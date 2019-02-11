@@ -7,6 +7,7 @@ public class MyCalendarView extends JFrame {
         super("Hello World");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        System.out.println("for test");
     }
 
 }
