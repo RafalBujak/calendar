@@ -3,6 +3,7 @@ package com.MyCalendar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class CalendarNavigationView extends JFrame {
 
@@ -26,7 +27,7 @@ public class CalendarNavigationView extends JFrame {
         setLayout(new FlowLayout());
 
         add(previusButton.createButtonPrevius());
-        add(textViewButton.createTextField());
+        add(textViewButton.createTextField(LocalDate.now()));
         add(nextButton.createButtonNext());
         add(comboBoxFrame.createComboBox());
         setVisible(true);

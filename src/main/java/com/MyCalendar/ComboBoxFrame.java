@@ -3,7 +3,7 @@ package com.MyCalendar;
 
 import javax.swing.*;
 
-public class ComboBoxFrame extends JComboBox {
+public class ComboBoxFrame extends JComboBox implements ChangeView {
 
     private String[] changeView = {"Week", "month"};
 
@@ -12,4 +12,8 @@ public class ComboBoxFrame extends JComboBox {
         return comboBox;
     }
 
+    @Override
+    public void updateView() {
+
+    }
 }

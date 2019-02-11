@@ -2,8 +2,7 @@ package com.MyCalendar;
 
 import javax.swing.*;
 
-public class NextButton extends JButton {
-
+public class NextButton extends JButton implements ChangeDate{
 
 
     public JButton createButtonNext() {
@@ -11,4 +10,9 @@ public class NextButton extends JButton {
         return rightNaviButton;
     }
 
+
+    @Override
+    public void updateDate() {
+
+    }
 }
