@@ -1,12 +1,9 @@
 package com.my.calendar;
 
-import javafx.scene.chart.PieChart;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-
 
 public class NextButton extends JButton implements ChangeDate, ActionListener {
 
@@ -17,12 +14,10 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
         addActionListener(this);
     }
 
-
     @Override
     public void updateDate() {
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -30,8 +25,6 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
         if (e.getSource() == this) {
             date = date.plusDays(1);
             Controller.getInstance().textViewButton.setText(date.toString());
-
         }
-
     }
 }
