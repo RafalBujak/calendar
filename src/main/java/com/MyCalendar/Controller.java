@@ -1,10 +1,19 @@
 package com.MyCalendar;
 
-public class Controller {
+public final class Controller {
 
-    //TODO
-    //implementacja wzorca obserwer
-    public Controller() {
+    private static Controller controllerInstance = null;
+
+    private Controller() {
 
     }
+
+    public static Controller getInstance() {
+
+        if(controllerInstance == null) {
+            controllerInstance = new Controller();
+        }
+        return controllerInstance;
+    }
+
 }
