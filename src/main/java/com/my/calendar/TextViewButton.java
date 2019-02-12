@@ -1,4 +1,4 @@
-package com.MyCalendar;
+package com.my.calendar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,14 +7,14 @@ import java.time.LocalDate;
 public class TextViewButton extends JTextField implements ChangeDate {
 
 
+    public TextViewButton(LocalDate date) {
+        super(date.toString());
+    }
+
     public TextViewButton() {
 
     }
 
-    public TextField createTextField(LocalDate date) {
-        TextField textField = new TextField(date.toString());
-        return textField;
-    }
 
 
     @Override
