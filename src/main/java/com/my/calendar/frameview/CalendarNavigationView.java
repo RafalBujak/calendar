@@ -1,5 +1,10 @@
-package com.my.calendar;
+package com.my.calendar.frameview;
 
+
+import com.my.calendar.comboboxframe.ComboBoxFrame;
+import com.my.calendar.controller.Controller;
+import com.my.calendar.buttons.NextButton;
+import com.my.calendar.buttons.PreviousButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +22,7 @@ public class CalendarNavigationView extends JFrame {
 
     public void calendarView() {
 
+
         setLayout(new FlowLayout());
         //TODO
         /*
@@ -24,7 +30,6 @@ public class CalendarNavigationView extends JFrame {
         */
         NextButton buttonNext = new NextButton(" > ");
         PreviousButton previousButton = new PreviousButton(" < ");
-
 
 
         add(previousButton);
@@ -35,7 +40,18 @@ public class CalendarNavigationView extends JFrame {
         Controller.getInstance().addChangeDateObservers(buttonNext);
         add(new ComboBoxFrame());
 
+        //TODO
+        /*
+        dodaj przyciski.
+        Container buttonLayout = new Container();
+        JButton[] buttons = new JButton[8];
+        for (JButton button : buttons) {
+            button = new JButton();
+            buttonLayout.add(button);
+            setVisible(true);
+        }
 
+        */
         setVisible(true);
     }
 

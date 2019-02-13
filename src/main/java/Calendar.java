@@ -1,4 +1,4 @@
-import com.my.calendar.CalendarNavigationView;
+import com.my.calendar.frameview.CalendarNavigationView;
 
 import java.awt.*;
 

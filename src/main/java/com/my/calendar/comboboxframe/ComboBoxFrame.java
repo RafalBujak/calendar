@@ -1,5 +1,7 @@
-package com.my.calendar;
+package com.my.calendar.comboboxframe;
 
+
+import com.my.calendar.ChangeView;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -7,12 +9,13 @@ import java.awt.event.ItemListener;
 
 public class ComboBoxFrame extends JComboBox implements ChangeView, ItemListener {
 
-    private String[] changeView = {"Week", "month"};
-
+    private enum changeView{
+       WEEK, MONTH
+    }
     public ComboBoxFrame() {
-       addItem(changeView[0]);
-       addItem(changeView[1]);
-       addItemListener(this);
+        addItem(changeView.WEEK);
+        addItem(changeView.MONTH);
+        addItemListener(this);
     }
 
     @Override
@@ -22,11 +25,12 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ItemListener
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (e.equals(changeView[0].equals("Week"))) {
+        if (changeView.WEEK.equals(changeView.WEEK)) {
             //TODO
             //implement new view when is ready
         } else {
 
         }
+
     }
 }
