@@ -1,13 +1,16 @@
 package com.my.calendar;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Controller {
 
 
-    TextViewButton textViewButton = new TextViewButton(LocalDate.now());
+
+    public LocalDate localDate = LocalDate.now();
+    public TextViewField textViewField = new TextViewField(localDate);
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
 
@@ -29,21 +32,25 @@ public final class Controller {
         changeDates.add(changeDate);
     }
 
-    public void addViewObserwers(ChangeView changeView) {
+    public void addViewObservers(ChangeView changeView) {
         changeViews.add(changeView);
     }
 
-    public void setChangeDate() {
+    public void notifyChangeDate() {
 
         for (ChangeDate date : changeDates) {
             date.updateDate();
         }
     }
 
-    public void setChangeView() {
+    public void notifyChangeView() {
 
         for (ChangeView view : changeViews) {
             view.updateView();
         }
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 }

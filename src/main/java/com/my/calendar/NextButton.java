@@ -3,11 +3,9 @@ package com.my.calendar;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
+
 
 public class NextButton extends JButton implements ChangeDate, ActionListener {
-
-    LocalDate date = LocalDate.now();
 
     public NextButton(String name) {
         super(name);
@@ -16,15 +14,17 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
 
     @Override
     public void updateDate() {
-
+        Controller.getInstance().textViewField.setText(Controller.getInstance().localDate.toString());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this) {
-            date = date.plusDays(1);
-            Controller.getInstance().textViewButton.setText(date.toString());
+            Controller.getInstance().localDate = Controller.getInstance().localDate.plusDays(1);
+
+            Controller.getInstance().notifyChangeDate();
+            updateDate();
         }
     }
 }

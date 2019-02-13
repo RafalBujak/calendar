@@ -3,7 +3,6 @@ package com.my.calendar;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
 
 public class CalendarNavigationView extends JFrame {
 
@@ -22,14 +21,22 @@ public class CalendarNavigationView extends JFrame {
         //TODO
         /*
         zmienic na border layout
-         */
-        add(new PreviousButton(" < "));
-        add(Controller.getInstance().textViewButton);
-        add(new NextButton(" > "));
+        */
+        NextButton buttonNext = new NextButton(" > ");
+        PreviousButton previousButton = new PreviousButton(" < ");
+
+
+
+        add(previousButton);
+        Controller.getInstance().addChangeDateObservers(previousButton);
+        add(Controller.getInstance().textViewField);
+        Controller.getInstance().addChangeDateObservers(Controller.getInstance().textViewField);
+        add(buttonNext);
+        Controller.getInstance().addChangeDateObservers(buttonNext);
         add(new ComboBoxFrame());
+
+
         setVisible(true);
     }
-
-
 
 }

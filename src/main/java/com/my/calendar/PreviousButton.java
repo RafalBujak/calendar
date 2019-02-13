@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class PreviousButton extends JButton implements ChangeDate, ActionListener {
 
-    LocalDate date = LocalDate.now();
+    private LocalDate date = LocalDate.now();
     public PreviousButton(String name) {
         super(name);
         addActionListener(this);
@@ -15,14 +15,15 @@ public class PreviousButton extends JButton implements ChangeDate, ActionListene
 
     @Override
     public void updateDate() {
-
+        Controller.getInstance().textViewField.setText(Controller.getInstance().localDate.toString());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
-            date = date.minusDays(1);
-            Controller.getInstance().textViewButton.setText(date.toString());
+            Controller.getInstance().localDate = Controller.getInstance().localDate.minusDays(1);
+            Controller.getInstance().notifyChangeDate();
+            updateDate();
         }
     }
 }
