@@ -21,9 +21,9 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
-        if (e.getSource() == this) {
+        if (event.getSource() == this) {
             Controller.getInstance().localDate = Controller.getInstance().localDate.plusDays(1);
 
             Controller.getInstance().notifyChangeDate();

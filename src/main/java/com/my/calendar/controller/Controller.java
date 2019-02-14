@@ -10,6 +10,7 @@ import java.util.List;
 
 public final class Controller {
 
+    private int monthDays;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
     private List<ChangeDate> changeDates = new ArrayList<>();
@@ -23,7 +24,7 @@ public final class Controller {
 
     public static Controller getInstance() {
 
-        if(controllerInstance == null) {
+        if (controllerInstance == null) {
             controllerInstance = new Controller();
         }
         return controllerInstance;
@@ -33,25 +34,26 @@ public final class Controller {
         changeDates.add(changeDate);
     }
 
-    public void addViewObservers(ChangeView changeView) {
-        changeViews.add(changeView);
-    }
+    public void addViewObservers(ChangeView changeView) { changeViews.add(changeView); }
 
     public void notifyChangeDate() {
-
-        for (ChangeDate date : changeDates) {
-            date.updateDate();
-        }
+        changeDates.forEach(ChangeDate::updateDate);
     }
 
     public void notifyChangeView() {
-
-        for (ChangeView view : changeViews) {
-            view.updateView();
-        }
+        changeViews.forEach(ChangeView::updateView);
     }
 
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
+    }
+
+
+    public int getMonthDays() {
+        return monthDays;
+    }
+
+    public void setMonthDays(int monthDays) {
+        this.monthDays = monthDays;
     }
 }

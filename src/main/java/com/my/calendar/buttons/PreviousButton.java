@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 public class PreviousButton extends JButton implements ChangeDate, ActionListener {
 
-
     public PreviousButton(String name) {
         super(name);
         addActionListener(this);
@@ -22,8 +21,8 @@ public class PreviousButton extends JButton implements ChangeDate, ActionListene
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this) {
+    public void actionPerformed(ActionEvent event) {
+        if (event.getSource() == this) {
             Controller.getInstance().localDate = Controller.getInstance().localDate.minusDays(1);
             Controller.getInstance().notifyChangeDate();
             updateDate();

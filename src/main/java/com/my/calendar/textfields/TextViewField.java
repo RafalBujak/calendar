@@ -21,8 +21,8 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
     public void updateDate() { }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this) {
+    public void actionPerformed(ActionEvent event) {
+        if (event.getSource() == this) {
 
             //TODO
             /*
