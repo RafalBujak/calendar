@@ -10,12 +10,13 @@ public class MainCalendarFrameView extends JFrame {
         calendarFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         calendarFrame.setSize(900, 600);
         calendarFrame.setLocation(50, 50);
+        calendarFrame.setLayout(new BorderLayout());
 
 
         NavigationButtonView navigationButtonView = new NavigationButtonView();
-        calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.CENTER);
-        DaysButtonsView viewDaysButtons = new DaysButtonsView(7);
-        calendarFrame.getContentPane().add(viewDaysButtons, BorderLayout.WEST);
+        calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.PAGE_START);
+        DaysButtonsView viewDaysButtons = new DaysButtonsView(31);
+        calendarFrame.getContentPane().add(viewDaysButtons, BorderLayout.CENTER);
         calendarFrame.setVisible(true);
     }
 
