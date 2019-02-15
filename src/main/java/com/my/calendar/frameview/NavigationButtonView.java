@@ -8,10 +8,9 @@ import com.my.calendar.controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 
-public class NaviButtonView extends JButton {
-    private Controller controller = Controller.getInstance();
+public class NavigationButtonView extends JButton {
 
-    public NaviButtonView() {
+    public NavigationButtonView() {
         setLayout(new FlowLayout());
 
         NextButton buttonNext = new NextButton(" > ");
@@ -20,6 +19,7 @@ public class NaviButtonView extends JButton {
 
 
         add(previousButton);
+        Controller controller = Controller.getInstance();
         controller.addChangeDateObservers(previousButton);
         add(controller.textViewField);
         controller.addChangeDateObservers(controller.textViewField);

@@ -3,7 +3,7 @@ package com.my.calendar.comboboxframe;
 
 import com.my.calendar.ChangeView;
 import com.my.calendar.controller.Controller;
-import com.my.calendar.frameview.ViewDaysButtons;
+import com.my.calendar.frameview.DaysButtonsView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +15,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
 
     private int localDate = LocalDate.now().getDayOfMonth();
+
     private enum changeView {
         WEEK, MONTH
     }
@@ -33,7 +34,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
                     int daysOfWeek = 7;
                     Controller.getInstance().notifyChangeView();
                     Controller.getInstance().setMonthDays(daysOfWeek);
-                    ViewDaysButtons viewDaysButtons = new ViewDaysButtons(0);
+                    DaysButtonsView viewDaysButtons = new DaysButtonsView(0);
                     viewDaysButtons.updateView();
                     System.out.println("tydzien");
                     System.out.println(Controller.getInstance().getMonthDays());
@@ -41,7 +42,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
                     Controller.getInstance().notifyChangeView();
                     Controller.getInstance().setMonthDays(localDate);
 
-                    ViewDaysButtons viewDaysButtons = new ViewDaysButtons(0);
+                    DaysButtonsView viewDaysButtons = new DaysButtonsView(0);
                     viewDaysButtons.createButton(Controller.getInstance().getMonthDays());
                     System.out.println("miesiac");
                     System.out.println(Controller.getInstance().getMonthDays());
@@ -54,7 +55,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-       // Controller.getInstance().setMonthDays(7);
+        // Controller.getInstance().setMonthDays(7);
     }
 
 }

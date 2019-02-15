@@ -3,7 +3,6 @@ package com.my.calendar.controller;
 import com.my.calendar.ChangeDate;
 import com.my.calendar.ChangeView;
 import com.my.calendar.textfields.TextViewField;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +33,9 @@ public final class Controller {
         changeDates.add(changeDate);
     }
 
-    public void addViewObservers(ChangeView changeView) { changeViews.add(changeView); }
+    public void addViewObservers(ChangeView changeView) {
+        changeViews.add(changeView);
+    }
 
     public void notifyChangeDate() {
         changeDates.forEach(ChangeDate::updateDate);
