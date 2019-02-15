@@ -1,10 +1,11 @@
-import com.my.calendar.frameview.CalendarMainFrame;
+import com.my.calendar.frameview.MainCalendarFrameView;
 
 import java.awt.*;
 
 public class Calendar {
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(CalendarMainFrame::new);
+
+        EventQueue.invokeLater(MainCalendarFrameView::new);
     }
 }

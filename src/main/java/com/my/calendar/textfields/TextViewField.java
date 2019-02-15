@@ -24,11 +24,6 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
 
-            //TODO
-            /*
-            try move logic to updateDate method
-            */
-
             String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
                     Controller.getInstance().localDate.toString());
 
