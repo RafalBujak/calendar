@@ -2,16 +2,21 @@ package com.my.calendar.controller;
 
 import com.my.calendar.ChangeDate;
 import com.my.calendar.ChangeView;
+import com.my.calendar.buttons.NextButton;
 import com.my.calendar.textfields.TextViewField;
+
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Controller {
 
-    private int monthDays;
+    private int monthDays= 7;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
+    public JButton buttons[] = new JButton[monthDays];
+    public NextButton nextButton = new NextButton(" > ");
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
 

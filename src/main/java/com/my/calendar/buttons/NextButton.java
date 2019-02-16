@@ -27,6 +27,8 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
 
             Controller.getInstance().notifyChangeDate();
             updateDate();
+
         }
     }
+
 }

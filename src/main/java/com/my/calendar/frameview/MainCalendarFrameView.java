@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class MainCalendarFrameView extends JFrame {
 
+
     public MainCalendarFrameView() {
         JFrame calendarFrame = new JFrame("Calendar");
         calendarFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -15,8 +16,12 @@ public class MainCalendarFrameView extends JFrame {
 
         NavigationButtonView navigationButtonView = new NavigationButtonView();
         calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.PAGE_START);
-        DaysButtonsView viewDaysButtons = new DaysButtonsView(31);
+
+        DaysButtonsView viewDaysButtons = new DaysButtonsView();
+        viewDaysButtons.createButton(31);
         calendarFrame.getContentPane().add(viewDaysButtons, BorderLayout.CENTER);
+
+
         calendarFrame.setVisible(true);
     }
 

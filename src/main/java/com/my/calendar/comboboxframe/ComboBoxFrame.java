@@ -4,6 +4,7 @@ package com.my.calendar.comboboxframe;
 import com.my.calendar.ChangeView;
 import com.my.calendar.controller.Controller;
 import com.my.calendar.frameview.DaysButtonsView;
+import com.my.calendar.frameview.MainCalendarFrameView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,15 +34,20 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
                 //System.out.println(getSelectedItem().toString());
                 if (getSelectedItem().toString().equals("WEEK")) {
 
+                    Controller.getInstance().setMonthDays(7);
+                    Controller.getInstance().notifyChangeView();
+                    //updateView();
                     System.out.println("tydzien");
                     System.out.println(Controller.getInstance().getMonthDays());
-                    add(new Button("test"));
+                    updateUI();
                 } else if (getSelectedItem().toString().equals("MONTH")) {
 
+                    Controller.getInstance().setMonthDays(31);
+                    //updateView();
                     System.out.println("miesiac");
                     System.out.println(Controller.getInstance().getMonthDays());
-                    add(new Button("test2"), FlowLayout.CENTER);
-                    updateUI();
+
+                    //updateUI();
                 }
             }
         });
@@ -51,7 +57,8 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-        // Controller.getInstance().setMonthDays(7);
+        //Controller.getInstance().daysButtonsView.createButton(Controller.getInstance().getMonthDays());
+        System.out.println("jestem w update view");
     }
 
 }

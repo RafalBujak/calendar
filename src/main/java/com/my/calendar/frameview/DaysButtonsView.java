@@ -4,36 +4,86 @@ import com.my.calendar.ChangeView;
 import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.LocalDate;
 
-public class DaysButtonsView extends JPanel implements ChangeView {
 
-    private int days;
+public class DaysButtonsView extends JPanel implements ChangeView, ActionListener, MouseListener {
 
-    public DaysButtonsView(int days) {
-        this.days = days;
-        /*
-        for (int i = 0; i < days; i++) {
-            LocalDate localDate = Controller.getInstance().localDate;
-            add(new JButton(String.valueOf(localDate.plusDays(i))));
-            System.out.println("asas");
-        }
-        */
-        createButton(days);
+
+    private int days = 7;
+    public DaysButtonsView() {
     }
 
     @Override
     public void updateView() {
-        days = Controller.getInstance().getMonthDays();
+
     }
 
-    public void createButton(int days) {
-        for (int i = 0; i < days; i++) {
-            LocalDate localDate = Controller.getInstance().localDate;
-            add(new JButton(String.valueOf(localDate.plusDays(i))));
-            System.out.println("asas");
+    JButton[] buttons = Controller.getInstance().buttons;
 
+    //TODO
+    //add value to argument from controller
+    public void createButton(int days) {
+
+        this.days = days;
+
+        System.out.println("teraz jestem w metodzie create button");
+
+        LocalDate localDate = Controller.getInstance().localDate;
+        for (int i = 0; i < buttons.length; ++i)
+        {
+            JButton btn = new JButton(String.valueOf(localDate.plusDays(i)));
+
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    btn.setBackground(Color.red);
+                }
+            });
+            add(btn);
+            buttons[i] = btn;
         }
+        buttons[0].setBackground(Color.gray);
+        revalidate();
+        repaint();
         updateUI();
+        System.out.println("teraz koncze prace z ta metoda");
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent event) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

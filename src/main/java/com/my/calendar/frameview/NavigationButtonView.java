@@ -13,7 +13,7 @@ public class NavigationButtonView extends JButton {
     public NavigationButtonView() {
         setLayout(new FlowLayout());
 
-        NextButton buttonNext = new NextButton(" > ");
+        //NextButton buttonNext = new NextButton(" > ");
         PreviousButton previousButton = new PreviousButton(" < ");
         ComboBoxFrame comboBoxFrame = new ComboBoxFrame();
 
@@ -23,8 +23,8 @@ public class NavigationButtonView extends JButton {
         controller.addChangeDateObservers(previousButton);
         add(controller.textViewField);
         controller.addChangeDateObservers(controller.textViewField);
-        add(buttonNext);
-        controller.addChangeDateObservers(buttonNext);
+        add(Controller.getInstance().nextButton);
+        controller.addChangeDateObservers(controller.nextButton);
         add(comboBoxFrame);
         controller.addViewObservers(comboBoxFrame);
     }
