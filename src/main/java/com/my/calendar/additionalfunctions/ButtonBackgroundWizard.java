@@ -25,6 +25,8 @@ public class ButtonBackgroundWizard extends JButton {
         iterator++;
     }
 
+    //TODO
+    //make this method live :)
     public void creatingBackgroundOfButtonsPrevious() {
         while (Controller.getInstance().buttons.length < iterator) {
 
