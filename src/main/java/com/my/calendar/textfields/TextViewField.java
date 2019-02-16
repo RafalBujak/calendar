@@ -4,6 +4,7 @@ import com.my.calendar.ChangeDate;
 import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -18,7 +19,8 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
     }
 
     @Override
-    public void updateDate() { }
+    public void updateDate() {
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -32,6 +34,8 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
             Controller.getInstance().setLocalDate(date);
             Controller.getInstance().notifyChangeDate();
             updateDate();
+
         }
+
     }
 }

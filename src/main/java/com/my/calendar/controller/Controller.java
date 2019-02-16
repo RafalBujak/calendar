@@ -6,11 +6,16 @@ import com.my.calendar.buttons.NextButton;
 import com.my.calendar.textfields.TextViewField;
 
 import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Controller {
+
+
+
+
 
     private int monthDays= 7;
     public LocalDate localDate = LocalDate.now();
@@ -62,4 +67,9 @@ public final class Controller {
     public void setMonthDays(int monthDays) {
         this.monthDays = monthDays;
     }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
 }
