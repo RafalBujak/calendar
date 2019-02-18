@@ -29,7 +29,7 @@ public class PreviousButton extends JButton implements ChangeDate, ActionListene
             Controller.getInstance().localDate = Controller.getInstance().localDate.minusDays(1);
             Controller.getInstance().notifyChangeDate();
 
-            background.creatingBackgroundOfButtonsPrevious();
+            background.buttonPreviousCreatingBackgroundOfButtons();
             updateDate();
         }
     }

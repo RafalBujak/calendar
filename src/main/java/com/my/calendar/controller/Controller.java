@@ -16,12 +16,11 @@ public final class Controller {
 
 
 
-
-    private int monthDays= 7;
+    private int iterator = 1;
+    private int monthDays = 31;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
     public JButton buttons[] = new JButton[monthDays];
-    public NextButton nextButton = new NextButton(" > ");
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
 
@@ -70,6 +69,19 @@ public final class Controller {
 
     public LocalDate getLocalDate() {
         return localDate;
+    }
+
+
+    public int getIterator() {
+        return iterator;
+    }
+
+    public void setIteratorForNextButton() {
+        this.iterator++;
+    }
+
+    public void setIteratorForPreviousButton() {
+        this.iterator--;
     }
 
 }

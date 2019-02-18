@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class DaysButtonsView extends JPanel implements ChangeView, ActionListener, MouseListener {
 
 
-    private int days = 7;
+    private int days = 31;
     public DaysButtonsView() {
     }
 

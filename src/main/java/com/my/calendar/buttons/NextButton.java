@@ -23,6 +23,8 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
         Controller.getInstance().textViewField.setText(Controller.getInstance().localDate.toString());
     }
 
+    //TODO
+    //
     @Override
     public void actionPerformed(ActionEvent event) {
 
@@ -31,7 +33,7 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
 
             Controller.getInstance().notifyChangeDate();
 
-            background.creatingBackgroundOfButtonsNext();
+            background.buttonNextCreatingBackgroundOfButtons();
 
             updateDate();
 
