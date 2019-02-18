@@ -35,6 +35,7 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
 
             background.buttonNextCreatingBackgroundOfButtons();
 
+
             updateDate();
 
         }

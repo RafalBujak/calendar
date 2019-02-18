@@ -51,4 +51,9 @@ public class ButtonBackgroundWizard extends JButton {
 
          */
     }
+
+    public void changeViewForNextWeek() {
+
+    }
+
 }

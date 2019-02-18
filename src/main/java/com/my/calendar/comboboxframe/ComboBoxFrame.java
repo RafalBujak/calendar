@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListener {
 
 
+
     private int localDate = LocalDate.now().getDayOfMonth();
 
     private enum changeView {
@@ -57,7 +58,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-        //Controller.getInstance().daysButtonsView.createButton(Controller.getInstance().getMonthDays());
+
         System.out.println("jestem w update view");
     }
 

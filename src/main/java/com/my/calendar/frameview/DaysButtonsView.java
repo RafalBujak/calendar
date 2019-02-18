@@ -14,8 +14,6 @@ import java.time.LocalDate;
 
 public class DaysButtonsView extends JPanel implements ChangeView, ActionListener, MouseListener {
 
-
-    private int days = 31;
     public DaysButtonsView() {
     }
 
@@ -24,35 +22,27 @@ public class DaysButtonsView extends JPanel implements ChangeView, ActionListene
 
     }
 
-    JButton[] buttons = Controller.getInstance().buttons;
+    private JButton[] buttons = Controller.getInstance().buttons;
 
     //TODO
-    //add value to argument from controller
-    public void createButton(int days) {
+    //add new methods which make week array of button and month array of buttons
 
-        this.days = days;
+    public void createButtonOnStartApplication() {
 
-        System.out.println("teraz jestem w metodzie create button");
 
         LocalDate localDate = Controller.getInstance().localDate;
-        for (int i = 0; i < buttons.length; ++i)
+        for (int i = 0; i < buttons.length; i++)
         {
             JButton btn = new JButton(String.valueOf(localDate.plusDays(i)));
-
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent event) {
-                    btn.setBackground(Color.red);
-                }
-            });
+            btn.addActionListener(event -> btn.setBackground(Color.red));
             add(btn);
             buttons[i] = btn;
         }
         buttons[0].setBackground(Color.gray);
+
         revalidate();
         repaint();
         updateUI();
-        System.out.println("teraz koncze prace z ta metoda");
     }
 
 
