@@ -2,12 +2,7 @@ package com.my.calendar.controller;
 
 import com.my.calendar.ChangeDate;
 import com.my.calendar.ChangeView;
-import com.my.calendar.buttons.NextButton;
-import com.my.calendar.frameview.DaysButtonsView;
 import com.my.calendar.textfields.TextViewField;
-
-import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,10 +83,6 @@ public final class Controller {
 
     public void setMonthDays(int monthDays) {
         this.monthDays = monthDays;
-    }
-
-    public void createWeekButton() {
-        //daysButtonsView.buttonWeek();
     }
 
 }

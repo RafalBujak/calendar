@@ -18,8 +18,6 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     private DaysButtonsView daysButtonsView = new DaysButtonsView();
 
-    private int localDate = LocalDate.now().getDayOfMonth();
-
     public enum changeView {
         WEEK, MONTH
     }
