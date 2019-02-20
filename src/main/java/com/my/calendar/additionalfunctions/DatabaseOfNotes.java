@@ -15,7 +15,6 @@ public class DatabaseOfNotes {
 
     private String note;
 
-
     public DatabaseOfNotes(String day, String note) {
         this.day = day;
         this.note = note;

@@ -1,18 +1,14 @@
 package com.my.calendar.textfields;
 
 import com.my.calendar.ChangeDate;
-import com.my.calendar.controller.Controller;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import static com.my.calendar.controller.Controller.*;
 
 public class TextViewField extends JTextField implements ChangeDate, ActionListener {
-
 
     public TextViewField(LocalDate date) {
         super(date.toString());
@@ -37,6 +33,5 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
             updateDate();
 
         }
-
     }
 }

@@ -3,32 +3,24 @@ package com.my.calendar.controller;
 import com.my.calendar.ChangeDate;
 import com.my.calendar.ChangeView;
 import com.my.calendar.textfields.TextViewField;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Controller {
 
-
-
-
-    private int iterator = 1;
-
-
     private int monthDays = 7;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
-
     private static Controller controllerInstance = null;
 
     private Controller() {
-
     }
 
     public static Controller getInstance() {
-
         if (controllerInstance == null) {
             controllerInstance = new Controller();
         }
@@ -59,20 +51,6 @@ public final class Controller {
         return localDate;
     }
 
-
-    public int getIterator() {
-        return iterator;
-    }
-
-    public void setIteratorForNextButton() {
-        this.iterator++;
-    }
-
-    public void setIteratorForPreviousButton() {
-        this.iterator--;
-    }
-
-
     public void setTextViewField(TextViewField textViewField) {
         this.textViewField = textViewField;
     }
@@ -84,5 +62,4 @@ public final class Controller {
     public void setMonthDays(int monthDays) {
         this.monthDays = monthDays;
     }
-
 }

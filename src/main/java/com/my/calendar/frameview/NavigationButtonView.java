@@ -4,7 +4,6 @@ import com.my.calendar.buttons.NextButton;
 import com.my.calendar.buttons.PreviousButton;
 import com.my.calendar.comboboxframe.ComboBoxFrame;
 import com.my.calendar.controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,7 +16,6 @@ public class NavigationButtonView extends JButton {
         PreviousButton previousButton = new PreviousButton(" < ");
         ComboBoxFrame comboBoxFrame = new ComboBoxFrame();
 
-
         add(previousButton);
         Controller controller = Controller.getInstance();
         controller.addChangeDateObservers(previousButton);
@@ -26,6 +24,5 @@ public class NavigationButtonView extends JButton {
         add(buttonNext);
         controller.addChangeDateObservers(buttonNext);
         add(comboBoxFrame);
-        controller.addViewObservers(comboBoxFrame);
     }
 }
