@@ -18,7 +18,7 @@ public final class Controller {
 
 
     private int iterator = 1;
-    private int monthDays = 7;
+    private int monthDays = 31;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
     public JButton[] buttons = new JButton[monthDays];

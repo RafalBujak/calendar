@@ -69,9 +69,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-        DaysButtonsView daysButtonsView = new DaysButtonsView();
-        daysButtonsView.buttonWeek();
-        updateUI();
+
     }
 
 
