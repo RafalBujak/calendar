@@ -31,7 +31,7 @@ public class DaysButtonsView extends JPanel implements ChangeView, ActionListene
         int days = getInstance().getMonthDays();
         System.out.println(days);
         for (int i = 0; i < days; i++) {
-            System.out.println("jestem w for " + i);
+
             weekView.add(new JButton(String.valueOf(getInstance().localDate.plusDays(i))));
 
             //added actionListener for set Background

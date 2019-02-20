@@ -15,12 +15,12 @@ public final class Controller {
     public TextViewField textViewField = new TextViewField(localDate);
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
-    private static Controller controllerInstance = null;
 
-    private Controller() {
-    }
+    private static Controller controllerInstance;
 
-    public static Controller getInstance() {
+    private Controller() { }
+
+    public static synchronized Controller getInstance() {
         if (controllerInstance == null) {
             controllerInstance = new Controller();
         }
