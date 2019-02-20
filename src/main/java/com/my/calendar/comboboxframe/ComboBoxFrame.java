@@ -4,18 +4,19 @@ package com.my.calendar.comboboxframe;
 import com.my.calendar.ChangeView;
 import com.my.calendar.controller.Controller;
 import com.my.calendar.frameview.DaysButtonsView;
-import com.my.calendar.frameview.MainCalendarFrameView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+
+import static com.my.calendar.controller.Controller.*;
 
 
 public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListener {
 
 
+    private DaysButtonsView daysButtonsView = new DaysButtonsView();
 
     private int localDate = LocalDate.now().getDayOfMonth();
 
@@ -34,21 +35,31 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
             public void actionPerformed(ActionEvent e) {
                 //System.out.println(getSelectedItem().toString());
                 if (getSelectedItem().toString().equals("WEEK")) {
-
-                    Controller.getInstance().setMonthDays(7);
+                    /*
                     Controller.getInstance().notifyChangeView();
                     //updateView();
                     System.out.println("tydzien");
                     System.out.println(Controller.getInstance().getMonthDays());
-                    updateUI();
+                    updateView();
+                    */
+
+                    getInstance().notifyChangeView();
+                    updateView();
+
+
                 } else if (getSelectedItem().toString().equals("MONTH")) {
 
-                    Controller.getInstance().setMonthDays(31);
+                    /*
+                    //Controller.getInstance().setMonthDays(31);
                     //updateView();
                     System.out.println("miesiac");
                     System.out.println(Controller.getInstance().getMonthDays());
-
+                    updateView();
                     //updateUI();
+                    */
+                    //Controller.getInstance().daysButtonsView.buttonMonth();
+
+
                 }
             }
         });
@@ -58,8 +69,11 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-
-        System.out.println("jestem w update view");
+        DaysButtonsView daysButtonsView = new DaysButtonsView();
+        daysButtonsView.buttonWeek();
+        updateUI();
     }
+
+
 
 }

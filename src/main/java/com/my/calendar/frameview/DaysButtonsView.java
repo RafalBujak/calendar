@@ -22,6 +22,7 @@ public class DaysButtonsView extends JPanel implements ChangeView, ActionListene
 
     }
 
+
     private JButton[] buttons = Controller.getInstance().buttons;
 
     //TODO
@@ -30,6 +31,7 @@ public class DaysButtonsView extends JPanel implements ChangeView, ActionListene
     public void createButtonOnStartApplication() {
 
 
+        revalidate();
         LocalDate localDate = Controller.getInstance().localDate;
         for (int i = 0; i < buttons.length; i++)
         {
@@ -40,11 +42,21 @@ public class DaysButtonsView extends JPanel implements ChangeView, ActionListene
         }
         buttons[0].setBackground(Color.gray);
 
-        revalidate();
+
         repaint();
         updateUI();
     }
 
+    public void buttonWeek() {
+        JButton week = new JButton("week");
+        add(week);
+        week.setVisible(true);
+
+    }
+
+    public void buttonMonth() {
+        add(new JButton("Month"));
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {

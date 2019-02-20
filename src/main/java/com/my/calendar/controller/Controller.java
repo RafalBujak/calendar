@@ -90,4 +90,8 @@ public final class Controller {
         this.textViewField = textViewField;
     }
 
+    public void createWeekButton() {
+        //daysButtonsView.buttonWeek();
+    }
+
 }

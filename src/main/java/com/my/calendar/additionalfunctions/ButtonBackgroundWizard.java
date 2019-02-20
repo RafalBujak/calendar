@@ -4,8 +4,12 @@ import com.my.calendar.controller.Controller;
 import javax.swing.*;
 import java.awt.*;
 
+import static com.my.calendar.controller.Controller.*;
+
 public class ButtonBackgroundWizard extends JButton {
 
+    //TODO
+    //to delete, eventually leave as extra functionality
 
     public ButtonBackgroundWizard() {
 
@@ -13,28 +17,28 @@ public class ButtonBackgroundWizard extends JButton {
 
     public void buttonNextCreatingBackgroundOfButtons() {
 
-        if (Controller.getInstance().getIterator() <= Controller.getInstance().buttons.length) {
+        if (getInstance().getIterator() <= getInstance().buttons.length) {
 
-            Controller.getInstance().buttons[Controller.getInstance().getIterator() - 1].setBackground(getBackground());
-            Controller.getInstance().buttons[Controller.getInstance().getIterator()].setBackground(Color.gray);
+            getInstance().buttons[getInstance().getIterator() - 1].setBackground(getBackground());
+            getInstance().buttons[getInstance().getIterator()].setBackground(Color.gray);
 
-            Controller.getInstance().setIteratorForNextButton();
-            if (Controller.getInstance().getIterator() >= Controller.getInstance().buttons.length) {
-                Controller.getInstance().setIteratorForPreviousButton();
+            getInstance().setIteratorForNextButton();
+            if (getInstance().getIterator() >= getInstance().buttons.length) {
+                getInstance().setIteratorForPreviousButton();
             }
         }
     }
 
     public void buttonPreviousCreatingBackgroundOfButtons() {
 
-        if (Controller.getInstance().getIterator() <= Controller.getInstance().buttons.length) {
+        if (getInstance().getIterator() <= Controller.getInstance().buttons.length) {
 
-            Controller.getInstance().setIteratorForPreviousButton();
-            Controller.getInstance().buttons[Controller.getInstance().getIterator() + 1].setBackground(getBackground());
-            Controller.getInstance().buttons[Controller.getInstance().getIterator()].setBackground(Color.gray);
+            getInstance().setIteratorForPreviousButton();
+            getInstance().buttons[getInstance().getIterator() + 1].setBackground(getBackground());
+            getInstance().buttons[getInstance().getIterator()].setBackground(Color.gray);
 
-            if (Controller.getInstance().getIterator() == 0) {
-                Controller.getInstance().setIteratorForNextButton();
+            if (getInstance().getIterator() == 0) {
+                getInstance().setIteratorForNextButton();
             }
         }
     }

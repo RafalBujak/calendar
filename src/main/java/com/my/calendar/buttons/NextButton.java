@@ -2,16 +2,17 @@ package com.my.calendar.buttons;
 
 import com.my.calendar.additionalfunctions.ButtonBackgroundWizard;
 import com.my.calendar.ChangeDate;
-import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.my.calendar.controller.Controller.*;
+
 
 public class NextButton extends JButton implements ChangeDate, ActionListener {
 
-    private ButtonBackgroundWizard background = new ButtonBackgroundWizard();
+    //private ButtonBackgroundWizard background = new ButtonBackgroundWizard();
 
     public NextButton(String name) {
         super(name);
@@ -20,7 +21,7 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
 
     @Override
     public void updateDate() {
-        Controller.getInstance().textViewField.setText(Controller.getInstance().localDate.toString());
+        getInstance().textViewField.setText(getInstance().localDate.toString());
     }
 
     //TODO
@@ -29,11 +30,11 @@ public class NextButton extends JButton implements ChangeDate, ActionListener {
     public void actionPerformed(ActionEvent event) {
 
         if (event.getSource() == this) {
-            Controller.getInstance().localDate = Controller.getInstance().localDate.plusDays(1);
+            getInstance().localDate = getInstance().localDate.plusDays(1);
 
-            Controller.getInstance().notifyChangeDate();
+            getInstance().notifyChangeDate();
 
-            background.buttonNextCreatingBackgroundOfButtons();
+            //background.buttonNextCreatingBackgroundOfButtons();
 
 
             updateDate();

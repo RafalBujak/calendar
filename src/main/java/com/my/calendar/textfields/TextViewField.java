@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static com.my.calendar.controller.Controller.*;
+
 public class TextViewField extends JTextField implements ChangeDate, ActionListener {
 
 
@@ -26,12 +28,12 @@ public class TextViewField extends JTextField implements ChangeDate, ActionListe
         if (event.getSource() == this) {
 
             String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
-                    Controller.getInstance().localDate.toString());
+                    getInstance().localDate.toString());
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(receiveDate, formatter);
-            Controller.getInstance().setLocalDate(date);
-            Controller.getInstance().notifyChangeDate();
+            getInstance().setLocalDate(date);
+            getInstance().notifyChangeDate();
             updateDate();
 
         }
