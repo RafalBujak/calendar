@@ -20,7 +20,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     private int localDate = LocalDate.now().getDayOfMonth();
 
-    private enum changeView {
+    public enum changeView {
         WEEK, MONTH
     }
 
@@ -30,37 +30,18 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
         addItem(changeView.WEEK);
         addItem(changeView.MONTH);
 
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //System.out.println(getSelectedItem().toString());
-                if (getSelectedItem().toString().equals("WEEK")) {
-                    /*
-                    Controller.getInstance().notifyChangeView();
-                    //updateView();
-                    System.out.println("tydzien");
-                    System.out.println(Controller.getInstance().getMonthDays());
-                    updateView();
-                    */
+        addActionListener(e -> {
+            //System.out.println(getSelectedItem().toString());
+            if (getSelectedItem().toString().equals("WEEK")) {
 
-                    getInstance().notifyChangeView();
-                    updateView();
+                getInstance().setMonthDays(7);
+                getInstance().notifyChangeView();
+                //updateView();
 
-
-                } else if (getSelectedItem().toString().equals("MONTH")) {
-
-                    /*
-                    //Controller.getInstance().setMonthDays(31);
-                    //updateView();
-                    System.out.println("miesiac");
-                    System.out.println(Controller.getInstance().getMonthDays());
-                    updateView();
-                    //updateUI();
-                    */
-                    //Controller.getInstance().daysButtonsView.buttonMonth();
-
-
-                }
+            } else if (getSelectedItem().toString().equals("MONTH")) {
+                getInstance().setMonthDays(getInstance().localDate.lengthOfMonth());
+                getInstance().notifyChangeView();
+                //updateView();
             }
         });
 
@@ -69,7 +50,7 @@ public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListen
 
     @Override
     public void updateView() {
-
+        daysButtonsView.createWeekOrMonthButtonsView();
     }
 
 

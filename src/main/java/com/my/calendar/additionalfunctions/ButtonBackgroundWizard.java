@@ -15,6 +15,7 @@ public class ButtonBackgroundWizard extends JButton {
 
     }
 
+    /*
     public void buttonNextCreatingBackgroundOfButtons() {
 
         if (getInstance().getIterator() <= getInstance().buttons.length) {
@@ -42,9 +43,10 @@ public class ButtonBackgroundWizard extends JButton {
             }
         }
     }
-
+*/
+    /*
     public void textFieldCreatingBackgroundOfButtons() {
-        /*
+
         co ma wykonac ta metoda po wprowadzeniu z klawiatury nowej daty
 
         1. po wpsaniu daty utwórz nowa tablice jbuttonów od daty która zostałą wpisana do textboxa
@@ -53,11 +55,11 @@ public class ButtonBackgroundWizard extends JButton {
         4.
 
 
-         */
+
     }
 
     public void changeViewForNextWeek() {
 
     }
-
+*/
 }

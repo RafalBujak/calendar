@@ -18,10 +18,11 @@ public final class Controller {
 
 
     private int iterator = 1;
-    private int monthDays = 31;
+
+
+    private int monthDays = 7;
     public LocalDate localDate = LocalDate.now();
     public TextViewField textViewField = new TextViewField(localDate);
-    public JButton[] buttons = new JButton[monthDays];
     private List<ChangeDate> changeDates = new ArrayList<>();
     private List<ChangeView> changeViews = new ArrayList<>();
 
@@ -59,15 +60,6 @@ public final class Controller {
         this.localDate = localDate;
     }
 
-
-    public int getMonthDays() {
-        return monthDays;
-    }
-
-    public void setMonthDays(int monthDays) {
-        this.monthDays = monthDays;
-    }
-
     public LocalDate getLocalDate() {
         return localDate;
     }
@@ -88,6 +80,14 @@ public final class Controller {
 
     public void setTextViewField(TextViewField textViewField) {
         this.textViewField = textViewField;
+    }
+
+    public int getMonthDays() {
+        return monthDays;
+    }
+
+    public void setMonthDays(int monthDays) {
+        this.monthDays = monthDays;
     }
 
     public void createWeekButton() {
