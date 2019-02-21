@@ -1,8 +1,11 @@
 package com.my.calendar.buttons;
+
 import com.my.calendar.DateObserver;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import static com.my.calendar.controller.Controller.*;
 
 public class NextButton extends JButton implements DateObserver, ActionListener {
@@ -14,14 +17,14 @@ public class NextButton extends JButton implements DateObserver, ActionListener 
 
     @Override
     public void updateDate() {
-        getInstance().textViewField.setText(getInstance().localDate.toString());
+
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
 
         if (event.getSource() == this) {
-            getInstance().localDate = getInstance().localDate.plusDays(1);
+            //getInstance().textViewField.setText(getInstance().getLocalDate().plusWeeks(1).toString());
             getInstance().notifyChangeDate();
             updateDate();
         }

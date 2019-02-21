@@ -18,5 +18,4 @@ public class MainCalendarFrameView extends JFrame {
         calendarFrame.getContentPane().add(buttonsView, BorderLayout.CENTER);
         calendarFrame.setVisible(true);
     }
-
 }

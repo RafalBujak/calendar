@@ -28,7 +28,7 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
         weekView.clear();
         int currentValueInDays = getInstance().getCurrentDayValue();
         for (int i = 0; i < currentValueInDays; i++) {
-            weekView.add(new JButton(String.valueOf(getInstance().localDate.with(DayOfWeek.MONDAY).plusDays(i))));
+            weekView.add(new JButton(String.valueOf(getInstance().getLocalDate().with(DayOfWeek.MONDAY).plusDays(i))));
         }
         weekView.forEach(this::add);
         currentDateOfBackground();
@@ -46,7 +46,7 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
     private void currentDateOfBackground() {
         int i = 0;
         while (i < weekView.size()) {
-            if (getInstance().localDate.toString().equals(weekView.get(i).getText())) {
+            if (getInstance().getLocalDate().toString().equals(weekView.get(i).getText())) {
                 weekView.get(i).setBackground(Color.gray);
             }
             i++;

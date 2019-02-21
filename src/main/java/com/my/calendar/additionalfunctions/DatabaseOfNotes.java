@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class DatabaseOfNotes {
 
-    private Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
+    public Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
 
     public DatabaseOfNotes() {  }
 

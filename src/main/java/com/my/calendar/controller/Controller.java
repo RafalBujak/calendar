@@ -10,20 +10,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.LocalDate.*;
+
 public final class Controller {
 
     private int currentDayValue = 7;
     //TODO
     //Make localdate private
-    public LocalDate localDate = LocalDate.now();
+    private LocalDate localDate = now();
 
-    public TextViewField getTextViewField() {
-        return textViewField;
-    }
 
     //TODO
     //remove this textViewField from controller
-    public TextViewField textViewField = new TextViewField(localDate);
+
     private List<DateObserver> dateObservers = new ArrayList<>();
     private List<ViewObserver> viewObservers = new ArrayList<>();
 
@@ -59,15 +58,14 @@ public final class Controller {
                 localDate.toString());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(receiveDate, formatter);
-        this.localDate = date;
+        this.localDate = LocalDate.parse(receiveDate, formatter);
         notifyChangeDate();
     }
 
     public void setLocalDateFromMouse(String dateFromMouse) {
-        String receiveDateFromLeftClick = dateFromMouse;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(receiveDateFromLeftClick, formatter);
+        LocalDate date;
+        date = parse(dateFromMouse, formatter);
         this.localDate = date;
         notifyChangeDate();
     }
