@@ -9,11 +9,9 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 public class TextViewField extends JTextField implements DateObserver, ActionListener {
-
-    LocalDate date;
+    
     public TextViewField(LocalDate date) {
         super(date.toString());
-        this.date = date;
         addActionListener(this);
     }
 
@@ -23,7 +21,7 @@ public class TextViewField extends JTextField implements DateObserver, ActionLis
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
-            Controller.getInstance().setLocalDate(date);
+            Controller.getInstance().setLocalDate();
         }
     }
 }

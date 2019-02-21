@@ -2,21 +2,24 @@ package com.my.calendar.frameview;
 
 import com.my.calendar.ViewObserver;
 import com.my.calendar.additionalfunctions.DatabaseOfNotes;
+import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static com.my.calendar.controller.Controller.*;
 
-public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
+public class DaysButtonsView extends JPanel implements ViewObserver {
     private List<JButton> weekView = new ArrayList<>();
     private DatabaseOfNotes databaseOfNotes;
 
-    public DaysButtonsViewObserver() {
+    public DaysButtonsView() {
         getInstance().addViewObservers(this);
     }
 
@@ -25,11 +28,10 @@ public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
         weekView.clear();
         int currentValueInDays = getInstance().getCurrentDayValue();
         for (int i = 0; i < currentValueInDays; i++) {
-            weekView.add(new JButton(String.valueOf(getInstance().localDate.plusDays(i))));
+            weekView.add(new JButton(String.valueOf(getInstance().localDate.with(DayOfWeek.MONDAY).plusDays(i))));
         }
         weekView.forEach(this::add);
-        weekView.get(0).setBackground(Color.gray);
-        addChangeBackgroundListener();
+        currentDateOfBackground();
         addMouseClickListener();
         updateUI();
         revalidate();
@@ -41,11 +43,18 @@ public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
         actualView();
     }
 
-    private void addChangeBackgroundListener() {
-        for (int i = 0; i < weekView.size(); i++) {
-            int finalIterator = i;
-            weekView.get(i).addActionListener(e -> weekView.get(finalIterator).setBackground(Color.red));
+    private void currentDateOfBackground() {
+        int i = 0;
+        while (i < weekView.size()) {
+            if (getInstance().localDate.toString().equals(weekView.get(i).getText())) {
+                weekView.get(i).setBackground(Color.gray);
+            }
+            i++;
         }
+    }
+
+    private void resetBackground() {
+        IntStream.range(0, weekView.size()).forEach(i -> weekView.get(i).setBackground(getBackground()));
     }
 
     private void addMouseClickListener() {
@@ -55,18 +64,12 @@ public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
                 @Override
                 public void mouseClicked(MouseEvent event) {
                     if (SwingUtilities.isRightMouseButton(event)) {
-                        //TODO
-                        //implement this option to add note
-                        //databaseOfNotes = new DatabaseOfNotes(weekView.get(finalIteratorForMouseClick).toString(), "note right");
-                        //System.out.println(databaseOfNotes.getNote() + " " + weekView.get(finalIteratorForMouseClick).getText());
-                        weekView.get(finalIterator).setBackground(Color.gray);
-                        weekView.get(0).setBackground(getBackground());
-
+                        //notatki
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
-                        //TODO
-                        //implement this option to add possibility to change date from the name of Jbutton to date in textfield
-                        databaseOfNotes = new DatabaseOfNotes(weekView.get(finalIterator).toString(), "note left");
-                        System.out.println(databaseOfNotes.getNote() + " " + weekView.get(finalIterator).getText());
+                        String temp = weekView.get(finalIterator).getText();
+                        Controller.getInstance().setLocalDateFromMouse(temp);
+                        resetBackground();
+                        currentDateOfBackground();
                     }
                 }
 
@@ -88,4 +91,7 @@ public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
             });
         }
     }
+
+    //TODO
+    //dodaj jlist do wyswietlinia notatek
 }

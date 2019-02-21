@@ -13,7 +13,7 @@ public class MainCalendarFrameView extends JFrame {
 
         NavigationButtonView navigationButtonView = new NavigationButtonView();
         calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.PAGE_START);
-        DaysButtonsViewObserver buttonsView = new DaysButtonsViewObserver();
+        DaysButtonsView buttonsView = new DaysButtonsView();
         buttonsView.actualView();
         calendarFrame.getContentPane().add(buttonsView, BorderLayout.CENTER);
         calendarFrame.setVisible(true);

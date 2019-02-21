@@ -20,6 +20,14 @@ public class DatabaseOfNotes {
         this.note = note;
     }
 
+    public void addObject(String test1, String test2) {
+        storeOfNotes.put(test1, test2);
+    }
+
+    public void reciveObject() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -16,6 +16,11 @@ public final class Controller {
     //TODO
     //Make localdate private
     public LocalDate localDate = LocalDate.now();
+
+    public TextViewField getTextViewField() {
+        return textViewField;
+    }
+
     //TODO
     //remove this textViewField from controller
     public TextViewField textViewField = new TextViewField(localDate);
@@ -49,25 +54,26 @@ public final class Controller {
         viewObservers.forEach(ViewObserver::updateView);
     }
 
-    public void setLocalDate(LocalDate localDate) {
+    public void setLocalDate() {
         String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
-                getInstance().localDate.toString());
+                localDate.toString());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(receiveDate, formatter);
         this.localDate = date;
-        getInstance().notifyChangeDate();
+        notifyChangeDate();
     }
 
+    public void setLocalDateFromMouse(String dateFromMouse) {
+        String receiveDateFromLeftClick = dateFromMouse;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(receiveDateFromLeftClick, formatter);
+        this.localDate = date;
+        notifyChangeDate();
+    }
     public LocalDate getLocalDate() {
         return localDate;
     }
-
-    /*
-    public void setTextViewField(TextViewField textViewField) {
-        this.textViewField = textViewField;
-    }
-    */
 
     public int getCurrentDayValue() {
         return currentDayValue;
