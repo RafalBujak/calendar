@@ -1,44 +1,21 @@
 package com.my.calendar.additionalfunctions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class DatabaseOfNotes {
 
-    private Map<String, String> storeOfNotes = new HashMap<>();
-    private String day;
+    private Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
 
-    public String getNote() {
-        return note;
+    public DatabaseOfNotes() {  }
+
+    public void addNote(String key, String value) {
+        ArrayList<String> values = storeOfNotes.computeIfAbsent(key, k -> new ArrayList<String>());
+        values.add(value);
     }
 
-    private String note;
-
-    public DatabaseOfNotes(String day, String note) {
-        this.day = day;
-        this.note = note;
-    }
-
-    public void addObject(String test1, String test2) {
-        storeOfNotes.put(test1, test2);
-    }
-
-    public void reciveObject() {
-
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DatabaseOfNotes that = (DatabaseOfNotes) o;
-        return day.equals(that.day) &&
-                note.equals(that.note);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(day, note);
+    public ArrayList<String> getNote(String key) {
+        return storeOfNotes.get(key);
     }
 }
