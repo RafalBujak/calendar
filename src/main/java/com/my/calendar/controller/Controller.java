@@ -1,20 +1,26 @@
 package com.my.calendar.controller;
 
-import com.my.calendar.ChangeDate;
-import com.my.calendar.ChangeView;
+import com.my.calendar.DateObserver;
+import com.my.calendar.ViewObserver;
 import com.my.calendar.textfields.TextViewField;
 
+import javax.swing.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Controller {
 
-    private int monthDays = 7;
+    private int currentDayValue = 7;
+    //TODO
+    //Make localdate private
     public LocalDate localDate = LocalDate.now();
+    //TODO
+    //remove this textViewField from controller
     public TextViewField textViewField = new TextViewField(localDate);
-    private List<ChangeDate> changeDates = new ArrayList<>();
-    private List<ChangeView> changeViews = new ArrayList<>();
+    private List<DateObserver> dateObservers = new ArrayList<>();
+    private List<ViewObserver> viewObservers = new ArrayList<>();
 
     private static Controller controllerInstance;
 
@@ -27,39 +33,48 @@ public final class Controller {
         return controllerInstance;
     }
 
-    public void addChangeDateObservers(ChangeDate changeDate) {
-        changeDates.add(changeDate);
+    public void addChangeDateObservers(DateObserver dateObserver) {
+        dateObservers.add(dateObserver);
     }
 
-    public void addViewObservers(ChangeView changeView) {
-        changeViews.add(changeView);
+    public void addViewObservers(ViewObserver viewObserver) {
+        viewObservers.add(viewObserver);
     }
 
     public void notifyChangeDate() {
-        changeDates.forEach(ChangeDate::updateDate);
+        dateObservers.forEach(DateObserver::updateDate);
     }
 
     public void notifyChangeView() {
-        changeViews.forEach(ChangeView::updateView);
+        viewObservers.forEach(ViewObserver::updateView);
     }
 
     public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+        String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
+                getInstance().localDate.toString());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(receiveDate, formatter);
+        this.localDate = date;
+        getInstance().notifyChangeDate();
     }
 
     public LocalDate getLocalDate() {
         return localDate;
     }
 
+    /*
     public void setTextViewField(TextViewField textViewField) {
         this.textViewField = textViewField;
     }
+    */
 
-    public int getMonthDays() {
-        return monthDays;
+    public int getCurrentDayValue() {
+        return currentDayValue;
     }
 
-    public void setMonthDays(int monthDays) {
-        this.monthDays = monthDays;
+    public void setCurrentDayValue(int currentDayValue) {
+        this.currentDayValue = currentDayValue;
+        notifyChangeView();
     }
 }

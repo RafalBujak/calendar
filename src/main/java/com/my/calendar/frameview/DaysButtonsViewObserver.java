@@ -1,6 +1,6 @@
 package com.my.calendar.frameview;
 
-import com.my.calendar.ChangeView;
+import com.my.calendar.ViewObserver;
 import com.my.calendar.additionalfunctions.DatabaseOfNotes;
 
 import javax.swing.*;
@@ -12,18 +12,18 @@ import java.util.List;
 
 import static com.my.calendar.controller.Controller.*;
 
-public class DaysButtonsView extends JPanel implements ChangeView {
+public class DaysButtonsViewObserver extends JPanel implements ViewObserver {
     private List<JButton> weekView = new ArrayList<>();
     private DatabaseOfNotes databaseOfNotes;
 
-    public DaysButtonsView() {
-        getInstance().addViewObservers(this::updateView);
+    public DaysButtonsViewObserver() {
+        getInstance().addViewObservers(this);
     }
 
     public void actualView() {
         removeAll();
         weekView.clear();
-        int currentValueInDays = getInstance().getMonthDays();
+        int currentValueInDays = getInstance().getCurrentDayValue();
         for (int i = 0; i < currentValueInDays; i++) {
             weekView.add(new JButton(String.valueOf(getInstance().localDate.plusDays(i))));
         }

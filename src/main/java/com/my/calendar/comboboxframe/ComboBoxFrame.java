@@ -1,39 +1,29 @@
 package com.my.calendar.comboboxframe;
 
-import com.my.calendar.ChangeView;
-import com.my.calendar.frameview.DaysButtonsView;
+import com.my.calendar.ViewObserver;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+import static com.my.calendar.additionalfunctions.CurrentView.*;
 import static com.my.calendar.controller.Controller.*;
 
-public class ComboBoxFrame extends JComboBox implements ChangeView, ActionListener {
-
-    private DaysButtonsView daysButtonsView = new DaysButtonsView();
-
-    public enum changeView {
-        WEEK, MONTH
-    }
+public class ComboBoxFrame extends JComboBox implements ViewObserver, ActionListener {
 
     public ComboBoxFrame() {
 
-        addItem(changeView.WEEK);
-        addItem(changeView.MONTH);
+        addItem(WEEK);
+        addItem(MONTH);
 
-        addActionListener(e -> {
-            if (getSelectedItem().toString().equals("WEEK")) {
-                getInstance().setMonthDays(7);
-                getInstance().notifyChangeView();
-            } else if (getSelectedItem().toString().equals("MONTH")) {
-                getInstance().setMonthDays(getInstance().localDate.lengthOfMonth());
-                getInstance().notifyChangeView();
+        addActionListener(event -> {
+            if (WEEK.name().equals(getSelectedItem().toString())) {
+                getInstance().setCurrentDayValue(7);
+            } else if (MONTH.name().equals(getSelectedItem().toString())) {
+                getInstance().setCurrentDayValue(getInstance().getLocalDate().lengthOfMonth());
             }
         });
     }
 
     @Override
-    public void updateView() {
-
-    }
+    public void updateView() {  }
 }

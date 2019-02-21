@@ -1,5 +1,5 @@
 package com.my.calendar;
 
-public interface ChangeDate {
+public interface DateObserver {
     void updateDate();
 }

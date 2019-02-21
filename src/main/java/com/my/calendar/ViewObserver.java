@@ -1,5 +1,5 @@
 package com.my.calendar;
 
-public interface ChangeView {
+public interface ViewObserver {
     void updateView();
 }
