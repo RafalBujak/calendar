@@ -2,7 +2,6 @@ package com.my.calendar.frameview;
 
 import com.my.calendar.ViewObserver;
 import com.my.calendar.additionalfunctions.DatabaseOfNotes;
-import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,7 +66,7 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
                         //notatki
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
                         String temp = weekView.get(finalIterator).getText();
-                        Controller.getInstance().setLocalDateFromMouse(temp);
+                        getInstance().setLocalDateFromMouse(temp);
                         resetBackground();
                         currentDateOfBackground();
                     }

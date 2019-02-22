@@ -4,6 +4,5 @@ import java.awt.*;
 
 public class Calendar {
 
-    public static void main(String[] args) {EventQueue.invokeLater(MainCalendarFrameView::new);
-    }
+    public static void main(String[] args) {EventQueue.invokeLater(MainCalendarFrameView::new); }
 }

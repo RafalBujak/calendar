@@ -8,23 +8,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
-import static com.my.calendar.controller.Controller.getInstance;
-
 public class TextViewField extends JTextField implements DateObserver, ActionListener {
-    
-    public TextViewField(LocalDate date) {
-        super(date.toString());
+
+    public TextViewField(LocalDate localDate) {
+        super(localDate.toString());
         addActionListener(this);
-        getInstance().addChangeDateObservers(this);
+        Controller.getInstance().addChangeDateObservers(this);
     }
 
     @Override
-    public void updateDate() { }
+    public void updateDate() { inputNewDate(); }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
             Controller.getInstance().setLocalDate();
         }
+    }
+
+    private void inputNewDate() {
+        setText(Controller.getInstance().getLocalDate().toString());
     }
 }
