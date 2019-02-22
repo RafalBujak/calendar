@@ -15,8 +15,9 @@ import java.util.stream.IntStream;
 import static com.my.calendar.controller.Controller.*;
 
 public class DaysButtonsView extends JPanel implements ViewObserver {
+
+    private DatabaseOfNotes database = new DatabaseOfNotes();
     private List<JButton> weekView = new ArrayList<>();
-    private DatabaseOfNotes databaseOfNotes;
 
     public DaysButtonsView() {
         getInstance().addViewObservers(this);
@@ -57,13 +58,19 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
     }
 
     private void addMouseClickListener() {
+
         for (int i = 0; i < weekView.size(); i++) {
             int finalIterator = i;
             weekView.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent event) {
                     if (SwingUtilities.isRightMouseButton(event)) {
-                        //notatki
+                        String temp = "";
+                        String notes = JOptionPane.showInputDialog("Add new note", temp);
+                        database.addNote(weekView.get(finalIterator).getText(), notes);
+                        if (database.getNote(weekView.get(finalIterator).getText()) != null) {
+                            System.out.println(database.getNote(weekView.get(finalIterator).getText()));
+                        }
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
                         String temp = weekView.get(finalIterator).getText();
                         getInstance().setLocalDateFromMouse(temp);
@@ -90,7 +97,4 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
             });
         }
     }
-
-    //TODO
-    //dodaj jlist do wyswietlinia notatek
 }

@@ -5,7 +5,7 @@ import com.my.calendar.ViewObserver;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-import static com.my.calendar.additionalfunctions.CurrentView.*;
+import static com.my.calendar.enumclasses.CurrentView.*;
 import static com.my.calendar.controller.Controller.*;
 
 public class ComboBoxFrame extends JComboBox implements ViewObserver, ActionListener {
@@ -25,5 +25,6 @@ public class ComboBoxFrame extends JComboBox implements ViewObserver, ActionList
     }
 
     @Override
-    public void updateView() {  }
+    public void updateView() {
+    }
 }

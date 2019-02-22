@@ -6,9 +6,10 @@ import java.util.Map;
 
 public class DatabaseOfNotes {
 
-    public Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
+    private Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
 
-    public DatabaseOfNotes() {  }
+    public DatabaseOfNotes() {
+    }
 
     public void addNote(String key, String value) {
         ArrayList<String> values = storeOfNotes.computeIfAbsent(key, k -> new ArrayList<String>());

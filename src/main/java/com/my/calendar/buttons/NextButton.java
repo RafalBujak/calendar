@@ -16,7 +16,8 @@ public class NextButton extends JButton implements DateObserver, ActionListener 
     }
 
     @Override
-    public void updateDate() { }
+    public void updateDate() {
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {

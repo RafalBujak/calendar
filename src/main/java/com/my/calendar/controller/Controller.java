@@ -13,14 +13,17 @@ import static java.time.LocalDate.*;
 
 public final class Controller {
 
-    private int currentDayValue = 7;
+    private static final int DEFAULT_NUMBER_OF_DAYS = 7;
+
+    private int currentDayValue = DEFAULT_NUMBER_OF_DAYS;
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
     private List<ViewObserver> viewObservers = new ArrayList<>();
 
     private static Controller controllerInstance;
 
-    private Controller() { }
+    private Controller() {
+    }
 
     public static synchronized Controller getInstance() {
         if (controllerInstance == null) {
@@ -37,7 +40,9 @@ public final class Controller {
         viewObservers.add(viewObserver);
     }
 
-    public void notifyChangeDate() { dateObservers.forEach(DateObserver::updateDate); }
+    public void notifyChangeDate() {
+        dateObservers.forEach(DateObserver::updateDate);
+    }
 
     public void notifyChangeView() {
         viewObservers.forEach(ViewObserver::updateView);
@@ -52,7 +57,7 @@ public final class Controller {
             this.localDate = LocalDate.parse(receiveDate, formatter);
             notifyChangeDate();
         } catch (Exception e) {
-            System.out.println("Not correct date format " + e);
+            JOptionPane.showMessageDialog(null, "Incorrect date format. The correct format is yyyy-mm-dd");
         }
     }
 
@@ -64,7 +69,7 @@ public final class Controller {
             this.localDate = date;
             notifyChangeDate();
         } catch (Exception e) {
-            System.out.println("Not correct date format " + e);
+            JOptionPane.showMessageDialog(null, "Incorrect date format.");
         }
     }
 

@@ -17,7 +17,9 @@ public class TextViewField extends JTextField implements DateObserver, ActionLis
     }
 
     @Override
-    public void updateDate() { inputNewDate(); }
+    public void updateDate() {
+        inputNewDate();
+    }
 
     @Override
     public void actionPerformed(ActionEvent event) {
