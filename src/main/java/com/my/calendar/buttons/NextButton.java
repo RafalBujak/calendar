@@ -16,19 +16,14 @@ public class NextButton extends JButton implements DateObserver, ActionListener 
     }
 
     @Override
-    public void updateDate() {
-
-    }
+    public void updateDate() { }
 
     @Override
     public void actionPerformed(ActionEvent event) {
 
         if (event.getSource() == this) {
-
-            //getInstance().textViewField.setText(getInstance().getLocalDate().plusWeeks(1).toString());
-           // textViewField.setTextViewField(getInstance().getLocalDate().plusWeeks(1).toString());
+            getInstance().updateDateViewNextButton();
             getInstance().notifyChangeDate();
-            updateDate();
         }
     }
 }

@@ -43,7 +43,7 @@ public final class Controller {
         viewObservers.forEach(ViewObserver::updateView);
     }
 
-    public void setLocalDate() {
+    public void setLocalDateFromInputDialog() {
         try {
             String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
                     localDate.toString());
@@ -79,5 +79,29 @@ public final class Controller {
     public void setCurrentDayValue(int currentDayValue) {
         this.currentDayValue = currentDayValue;
         notifyChangeView();
+    }
+
+    private void setLocalDayByUsingJButtons(LocalDate date) {
+        this.localDate = date;
+    }
+
+    public void updateDateViewNextButton() {
+        if (currentDayValue == 7) {
+            setLocalDayByUsingJButtons(localDate.plusWeeks(1));
+            notifyChangeView();
+        } else {
+            setLocalDayByUsingJButtons(localDate.plusMonths(1));
+            notifyChangeView();
+        }
+    }
+
+    public void updateDateViewPreviousButton() {
+        if (currentDayValue == 7) {
+            setLocalDayByUsingJButtons(localDate.minusWeeks(1));
+            notifyChangeView();
+        } else {
+            setLocalDayByUsingJButtons(localDate.minusMonths(1));
+            notifyChangeView();
+        }
     }
 }

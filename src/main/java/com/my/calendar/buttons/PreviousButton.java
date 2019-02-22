@@ -14,16 +14,13 @@ public class PreviousButton extends JButton implements DateObserver, ActionListe
     }
 
     @Override
-    public void updateDate() {
-        //getInstance().textViewField.setText(getInstance().getLocalDate().minusWeeks(1).toString());
-    }
+    public void updateDate() {    }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
-            //getInstance().localDate = getInstance().localDate.minusDays(1);
+            getInstance().updateDateViewPreviousButton();
             getInstance().notifyChangeDate();
-            updateDate();
         }
     }
 }

@@ -22,7 +22,8 @@ public class TextViewField extends JTextField implements DateObserver, ActionLis
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
-            Controller.getInstance().setLocalDate();
+            Controller.getInstance().setLocalDateFromInputDialog();
+            Controller.getInstance().notifyChangeView();
         }
     }
 
