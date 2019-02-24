@@ -68,9 +68,7 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
                         String temp = "";
                         String notes = JOptionPane.showInputDialog("Add new note", temp);
                         database.addNote(weekView.get(finalIterator).getText(), notes);
-                        if (database.getNote(weekView.get(finalIterator).getText()) != null) {
-                            System.out.println(database.getNote(weekView.get(finalIterator).getText()));
-                        }
+                        database.getNoteFromMap(weekView.get(finalIterator).getText());
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
                         String temp = weekView.get(finalIterator).getText();
                         getInstance().setLocalDateFromMouse(temp);

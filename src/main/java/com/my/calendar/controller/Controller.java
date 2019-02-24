@@ -15,6 +15,7 @@ public final class Controller {
 
     private static final int DEFAULT_NUMBER_OF_DAYS = 7;
 
+    private JTextArea textArea = new JTextArea();
     private int currentDayValue = DEFAULT_NUMBER_OF_DAYS;
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
@@ -81,6 +82,10 @@ public final class Controller {
         return currentDayValue;
     }
 
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
     public void setCurrentDayValue(int currentDayValue) {
         this.currentDayValue = currentDayValue;
         notifyChangeView();
@@ -91,7 +96,7 @@ public final class Controller {
     }
 
     public void updateDateViewNextButton() {
-        if (currentDayValue == 7) {
+        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
             setLocalDayByUsingJButtons(localDate.plusWeeks(1));
             notifyChangeView();
         } else {
@@ -101,7 +106,7 @@ public final class Controller {
     }
 
     public void updateDateViewPreviousButton() {
-        if (currentDayValue == 7) {
+        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
             setLocalDayByUsingJButtons(localDate.minusWeeks(1));
             notifyChangeView();
         } else {
