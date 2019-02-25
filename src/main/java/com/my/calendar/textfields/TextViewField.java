@@ -4,15 +4,15 @@ import com.my.calendar.DateObserver;
 import com.my.calendar.controller.Controller;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.LocalDate;
 
-public class TextViewField extends JTextField implements DateObserver, ActionListener {
+public class TextViewField extends JTextField implements DateObserver, MouseListener {
 
     public TextViewField(LocalDate localDate) {
         super(localDate.toString());
-        addActionListener(this);
+        addMouseListener(this);
         Controller.getInstance().addChangeDateObservers(this);
     }
 
@@ -21,15 +21,35 @@ public class TextViewField extends JTextField implements DateObserver, ActionLis
         inputNewDate();
     }
 
+    private void inputNewDate() {
+        setText(Controller.getInstance().getLocalDate().toString());
+    }
+
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void mouseClicked(MouseEvent event) {
         if (event.getSource() == this) {
-            Controller.getInstance().setLocalDateFromInputDialog();
+            Controller.getInstance().getFormatter().setLocalDateFromInputDialog();
             Controller.getInstance().notifyChangeView();
         }
     }
 
-    private void inputNewDate() {
-        setText(Controller.getInstance().getLocalDate().toString());
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

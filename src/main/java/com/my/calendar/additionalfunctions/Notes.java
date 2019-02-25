@@ -6,23 +6,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatabaseOfNotes {
+public class Notes {
 
     private Map<String, ArrayList<String>> storeOfNotes = new HashMap<>();
 
-    public DatabaseOfNotes() {
+    public Notes() {
     }
 
     public void addNote(String key, String value) {
         ArrayList<String> values = storeOfNotes.computeIfAbsent(key, k -> new ArrayList<String>());
         values.add(value);
     }
-
-    /*
-    public ArrayList<String> getNote(String key) {
-        return storeOfNotes.get(key);
-    }
-    */
 
     public void getNoteFromMap(String key) {
         StringBuilder tempValue = new StringBuilder();

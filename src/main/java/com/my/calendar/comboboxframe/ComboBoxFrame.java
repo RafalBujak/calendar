@@ -1,14 +1,12 @@
 package com.my.calendar.comboboxframe;
 
-import com.my.calendar.ViewObserver;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
 import static com.my.calendar.enumclasses.CurrentView.*;
 import static com.my.calendar.controller.Controller.*;
 
-public class ComboBoxFrame extends JComboBox implements ViewObserver, ActionListener {
+public class ComboBoxFrame extends JComboBox implements ActionListener {
 
     public ComboBoxFrame() {
 
@@ -17,14 +15,10 @@ public class ComboBoxFrame extends JComboBox implements ViewObserver, ActionList
 
         addActionListener(event -> {
             if (WEEK.name().equals(getSelectedItem().toString())) {
-                getInstance().setCurrentDayValue(7);
+                getInstance().setDate(7);
             } else if (MONTH.name().equals(getSelectedItem().toString())) {
-                getInstance().setCurrentDayValue(getInstance().getLocalDate().lengthOfMonth());
+                getInstance().setDate(getInstance().getLocalDate().lengthOfMonth());
             }
         });
-    }
-
-    @Override
-    public void updateView() {
     }
 }

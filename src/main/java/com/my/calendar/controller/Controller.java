@@ -2,10 +2,10 @@ package com.my.calendar.controller;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
+import com.my.calendar.date.DateFormatter;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +13,9 @@ import static java.time.LocalDate.*;
 
 public final class Controller {
 
-    private static final int DEFAULT_NUMBER_OF_DAYS = 7;
+    private final int DEFAULT_NUMBER_OF_DAYS = 7;
 
+    private DateFormatter formatter = new DateFormatter();
     private JTextArea textArea = new JTextArea();
     private int currentDayValue = DEFAULT_NUMBER_OF_DAYS;
     private LocalDate localDate = now();
@@ -49,29 +50,48 @@ public final class Controller {
         viewObservers.forEach(ViewObserver::updateView);
     }
 
-    public void setLocalDateFromInputDialog() {
-        try {
-            String receiveDate = JOptionPane.showInputDialog("Input the date in the format \"yyyy-mm-dd\"",
-                    localDate.toString());
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            this.localDate = LocalDate.parse(receiveDate, formatter);
-            notifyChangeDate();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Incorrect date format. The correct format is yyyy-mm-dd");
+    public void updateDateViewNextButton() {
+        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
+            setLocalDayByUsingJButtons(addWeek());
+            notifyDateAndView();
+        } else {
+            setLocalDayByUsingJButtons(addMonth());
+            notifyDateAndView();
         }
     }
 
-    public void setLocalDateFromMouse(String dateFromMouse) {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate date;
-            date = parse(dateFromMouse, formatter);
-            this.localDate = date;
-            notifyChangeDate();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Incorrect date format.");
+    public void updateDateViewPreviousButton() {
+        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
+            setLocalDayByUsingJButtons(subtractWeek());
+            notifyDateAndView();
+        } else {
+            setLocalDayByUsingJButtons(subtractMonth());
+            notifyDateAndView();
         }
+    }
+
+    private void notifyDateAndView() {
+        notifyChangeView();
+        notifyChangeDate();
+    }
+
+    private LocalDate addWeek() {
+        return localDate.plusWeeks(1);
+    }
+    private LocalDate addMonth() {
+        return localDate.plusMonths(1);
+    }
+
+    private LocalDate subtractWeek() {
+        return localDate.minusWeeks(1);
+    }
+
+    private LocalDate subtractMonth() {
+        return localDate.minusMonths(1);
+    }
+
+    public DateFormatter getFormatter() {
+        return formatter;
     }
 
     public LocalDate getLocalDate() {
@@ -86,7 +106,7 @@ public final class Controller {
         return textArea;
     }
 
-    public void setCurrentDayValue(int currentDayValue) {
+    public void setDate(int currentDayValue) {
         this.currentDayValue = currentDayValue;
         notifyChangeView();
     }
@@ -95,23 +115,8 @@ public final class Controller {
         this.localDate = date;
     }
 
-    public void updateDateViewNextButton() {
-        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
-            setLocalDayByUsingJButtons(localDate.plusWeeks(1));
-            notifyChangeView();
-        } else {
-            setLocalDayByUsingJButtons(localDate.plusMonths(1));
-            notifyChangeView();
-        }
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
-    public void updateDateViewPreviousButton() {
-        if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
-            setLocalDayByUsingJButtons(localDate.minusWeeks(1));
-            notifyChangeView();
-        } else {
-            setLocalDayByUsingJButtons(localDate.minusMonths(1));
-            notifyChangeView();
-        }
-    }
 }
