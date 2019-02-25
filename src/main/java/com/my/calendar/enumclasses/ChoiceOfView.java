@@ -1,5 +1,5 @@
 package com.my.calendar.enumclasses;
 
-public enum CurrentView {
+public enum ChoiceOfView {
     WEEK, MONTH
 }

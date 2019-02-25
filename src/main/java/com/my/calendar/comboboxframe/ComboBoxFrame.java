@@ -3,7 +3,7 @@ package com.my.calendar.comboboxframe;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-import static com.my.calendar.enumclasses.CurrentView.*;
+import static com.my.calendar.enumclasses.ChoiceOfView.*;
 import static com.my.calendar.controller.Controller.*;
 
 public class ComboBoxFrame extends JComboBox implements ActionListener {
