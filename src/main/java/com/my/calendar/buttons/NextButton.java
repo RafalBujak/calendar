@@ -16,7 +16,7 @@ public class NextButton extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == this) {
-            getInstance().updateDateViewNextButton();
+            getInstance().updateViewByNextButton();
         }
     }
 }

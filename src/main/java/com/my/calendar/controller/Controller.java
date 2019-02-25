@@ -2,21 +2,21 @@ package com.my.calendar.controller;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
-import com.my.calendar.date.DateFormatter;
+import com.my.calendar.enumclasses.ChoiceOfView;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.my.calendar.enumclasses.ChoiceOfView.MONTH;
+import static com.my.calendar.enumclasses.ChoiceOfView.WEEK;
 import static java.time.LocalDate.*;
 
 public final class Controller {
 
     private final int DEFAULT_NUMBER_OF_DAYS = 7;
 
-    private DateFormatter formatter = new DateFormatter();
-    private JTextArea textArea = new JTextArea();
+    //to change name of this variable
     private int currentDayValue = DEFAULT_NUMBER_OF_DAYS;
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
@@ -50,7 +50,8 @@ public final class Controller {
         viewObservers.forEach(ViewObserver::updateView);
     }
 
-    public void updateDateViewNextButton() {
+    //do zmiany
+    public void updateViewByNextButton() {
         if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
             setLocalDayByUsingJButtons(addWeek());
             notifyDateAndView();
@@ -60,7 +61,8 @@ public final class Controller {
         }
     }
 
-    public void updateDateViewPreviousButton() {
+    // do zmiany
+    public void updateViewByPreviousButton() {
         if (currentDayValue == DEFAULT_NUMBER_OF_DAYS) {
             setLocalDayByUsingJButtons(subtractWeek());
             notifyDateAndView();
@@ -70,6 +72,7 @@ public final class Controller {
         }
     }
 
+    // do wywalenia
     private void notifyDateAndView() {
         notifyChangeView();
         notifyChangeDate();
@@ -90,10 +93,6 @@ public final class Controller {
         return localDate.minusMonths(1);
     }
 
-    public DateFormatter getFormatter() {
-        return formatter;
-    }
-
     public LocalDate getLocalDate() {
         return localDate;
     }
@@ -102,13 +101,14 @@ public final class Controller {
         return currentDayValue;
     }
 
-    public JTextArea getTextArea() {
-        return textArea;
-    }
-
-    public void setDate(int currentDayValue) {
-        this.currentDayValue = currentDayValue;
-        notifyChangeView();
+    public void setActualView(String choiceOfView) {
+        if (WEEK.name().equals(choiceOfView)) {
+            this.currentDayValue = DEFAULT_NUMBER_OF_DAYS;
+            notifyChangeView();
+        } else if (MONTH.name().equals(choiceOfView)) {
+            this.currentDayValue = localDate.lengthOfMonth();
+            notifyChangeView();
+        }
     }
 
     private void setLocalDayByUsingJButtons(LocalDate date) {
@@ -117,6 +117,7 @@ public final class Controller {
 
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
+        notifyChangeDate();
     }
 
 }

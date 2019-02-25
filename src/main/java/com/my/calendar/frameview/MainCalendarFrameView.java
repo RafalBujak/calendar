@@ -1,6 +1,6 @@
 package com.my.calendar.frameview;
 
-import com.my.calendar.controller.Controller;
+import com.my.calendar.additionalfunctions.Notes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,7 @@ import java.awt.*;
 public class MainCalendarFrameView extends JFrame {
 
     public MainCalendarFrameView() {
+
         JFrame calendarFrame = new JFrame("Calendar");
         calendarFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         calendarFrame.setSize(900, 600);
@@ -19,7 +20,7 @@ public class MainCalendarFrameView extends JFrame {
         DaysButtonsView buttonsView = new DaysButtonsView();
         buttonsView.currentButtonsViewOnFrame();
         calendarFrame.getContentPane().add(buttonsView, BorderLayout.CENTER);
-        calendarFrame.getContentPane().add(Controller.getInstance().getTextArea(), BorderLayout.AFTER_LAST_LINE);
+        calendarFrame.getContentPane().add(new JTextArea(), BorderLayout.AFTER_LAST_LINE);
         calendarFrame.setVisible(true);
     }
 }

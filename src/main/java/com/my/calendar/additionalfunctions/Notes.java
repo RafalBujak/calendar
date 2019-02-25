@@ -1,7 +1,5 @@
 package com.my.calendar.additionalfunctions;
 
-import com.my.calendar.controller.Controller;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +24,7 @@ public class Notes {
             }
         }
 
-        Controller.getInstance().getTextArea().setText(tempValue.toString());
+        //setText(tempValue.toString());
     }
+
 }

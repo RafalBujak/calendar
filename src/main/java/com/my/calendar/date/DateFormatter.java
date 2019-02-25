@@ -18,7 +18,6 @@ public class DateFormatter {
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             Controller.getInstance().setLocalDate(LocalDate.parse(receiveDate, formatter));
-            Controller.getInstance().notifyChangeDate();
         } catch (Exception wrongDateFormat) {
             JOptionPane.showMessageDialog(null, "Incorrect date format. The correct format is yyyy-mm-dd");
         }
@@ -30,7 +29,6 @@ public class DateFormatter {
             LocalDate date;
             date = parse(dateFromMouse, formatter);
             Controller.getInstance().setLocalDate(date);
-            Controller.getInstance().notifyChangeDate();
         } catch (Exception wrongDateFormat) {
             JOptionPane.showMessageDialog(null, "Incorrect date format.");
         }
