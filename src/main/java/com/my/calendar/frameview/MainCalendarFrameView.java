@@ -1,11 +1,11 @@
 package com.my.calendar.frameview;
 
-import com.my.calendar.additionalfunctions.Notes;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class MainCalendarFrameView extends JFrame {
+
+    private final int DEFAULT_WEEK_VALUE_BY_START_APP = 7;
 
     public MainCalendarFrameView() {
 
@@ -18,7 +18,7 @@ public class MainCalendarFrameView extends JFrame {
         NavigationButtonView navigationButtonView = new NavigationButtonView();
         calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.PAGE_START);
         DaysButtonsView buttonsView = new DaysButtonsView();
-        buttonsView.currentButtonsViewOnFrame();
+        buttonsView.currentView(DEFAULT_WEEK_VALUE_BY_START_APP);
         calendarFrame.getContentPane().add(buttonsView, BorderLayout.CENTER);
         calendarFrame.getContentPane().add(new JTextArea(), BorderLayout.AFTER_LAST_LINE);
         calendarFrame.setVisible(true);

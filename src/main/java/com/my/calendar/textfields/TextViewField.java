@@ -11,11 +11,12 @@ import java.time.LocalDate;
 
 public class TextViewField extends JTextField implements DateObserver, MouseListener {
 
+    private Controller controller = Controller.getInstance();
     private DateFormatter formatter = new DateFormatter();
     public TextViewField(LocalDate localDate) {
         super(localDate.toString());
         addMouseListener(this);
-        Controller.getInstance().addChangeDateObservers(this);
+        controller.addChangeDateObservers(this);
     }
 
     @Override
@@ -24,14 +25,14 @@ public class TextViewField extends JTextField implements DateObserver, MouseList
     }
 
     private void inputNewDate() {
-        setText(Controller.getInstance().getLocalDate().toString());
+        setText(controller.getLocalDate().toString());
     }
 
     @Override
     public void mouseClicked(MouseEvent event) {
         if (event.getSource() == this) {
             formatter.setLocalDateFromInputDialog();
-            Controller.getInstance().notifyChangeView();
+            //controller.notifyChangeView();
         }
     }
 

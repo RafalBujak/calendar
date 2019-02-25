@@ -2,6 +2,7 @@ package com.my.calendar.frameview;
 
 import com.my.calendar.ViewObserver;
 import com.my.calendar.additionalfunctions.Notes;
+import com.my.calendar.controller.Controller;
 import com.my.calendar.date.DateFormatter;
 
 import javax.swing.*;
@@ -14,71 +15,64 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.my.calendar.controller.Controller.*;
-
 public class DaysButtonsView extends JPanel implements ViewObserver {
 
+    private Controller controller = Controller.getInstance();
     private Notes database = new Notes();
-    private List<JButton> weekView = new ArrayList<>();
+    private List<JButton> currentCalendarView = new ArrayList<>();
     private DateFormatter formatter = new DateFormatter();
 
     public DaysButtonsView() {
-        getInstance().addViewObservers(this);
+        Controller.getInstance().addViewObservers(this);
     }
 
-    public void currentButtonsViewOnFrame() {
+    public void currentView(int days) {
         removeAll();
-        weekView.clear();
-        LocalDate temp = LocalDate.of(getInstance().getLocalDate().getYear(), getInstance().getLocalDate().getMonth(), 1);
-        int days = getInstance().getCurrentDayValue();
+        currentCalendarView.clear();
+        LocalDate temp = LocalDate.of(controller.getLocalDate().getYear(), controller.getLocalDate().getMonth(), 1);
         for (int day = 0; day < days; day++) {
-            if (days == 7) {
-                weekView.add(new JButton(getInstance().getLocalDate().with(DayOfWeek.MONDAY).plusDays(day).toString()));
-            } else if (days > 7 ) {
-                weekView.add(new JButton(temp.toString()));
+            if (days == controller.getLENGTH_OF_WEEK()) {
+                currentCalendarView.add(new JButton(controller.getLocalDate().with(DayOfWeek.MONDAY).plusDays(day).toString()));
+            } else if (days == controller.getLENGTH_OF_MONTH()){
+                currentCalendarView.add(new JButton(temp.toString()));
                 temp = temp.plusDays(1L);
             }
         }
-        weekView.forEach(this::add);
+        currentCalendarView.forEach(this::add);
         currentDateOfBackground();
         addMouseClickListener();
         revalidate();
         repaint();
     }
 
-    @Override
-    public void updateView() {
-        currentButtonsViewOnFrame();
-    }
-
     private void currentDateOfBackground() {
         int i = 0;
-        while (i < weekView.size()) {
-            if (getInstance().getLocalDate().toString().equals(weekView.get(i).getText())) {
-                weekView.get(i).setBackground(Color.gray);
+        while (i < currentCalendarView.size()) {
+            if (controller.getLocalDate().toString().equals(currentCalendarView.get(i).getText())) {
+                currentCalendarView.get(i).setBackground(Color.gray);
             }
             i++;
         }
     }
 
     private void resetBackground() {
-        IntStream.range(0, weekView.size()).forEach(iterator -> weekView.get(iterator).setBackground(getBackground()));
+        IntStream.range(0, currentCalendarView.size()).forEach(iterator -> currentCalendarView.get(iterator).setBackground(getBackground()));
     }
 
     private void addMouseClickListener() {
 
-        for (int i = 0; i < weekView.size(); i++) {
+        for (int i = 0; i < currentCalendarView.size(); i++) {
             int finalIterator = i;
-            weekView.get(i).addMouseListener(new MouseListener() {
+            currentCalendarView.get(i).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent event) {
                     if (SwingUtilities.isRightMouseButton(event)) {
                         String temp = "";
                         String notes = JOptionPane.showInputDialog("Add new note", temp);
-                        database.addNote(weekView.get(finalIterator).getText(), notes);
-                        database.getNoteFromMap(weekView.get(finalIterator).getText());
+                        database.addNote(currentCalendarView.get(finalIterator).getText(), notes);
+                        database.getNoteFromMap(currentCalendarView.get(finalIterator).getText());
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
-                        String temp = weekView.get(finalIterator).getText();
+                        String temp = currentCalendarView.get(finalIterator).getText();
                         formatter.setLocalDateFromMouse(temp);
                         resetBackground();
                         currentDateOfBackground();
@@ -102,5 +96,10 @@ public class DaysButtonsView extends JPanel implements ViewObserver {
                 }
             });
         }
+    }
+
+    @Override
+    public void updateView(int days) {
+        currentView(days);
     }
 }
