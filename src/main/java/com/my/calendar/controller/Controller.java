@@ -14,7 +14,6 @@ import static java.time.LocalDate.*;
 public final class Controller {
 
     private final int LENGTH_OF_WEEK = 7;
-    private final int LENGTH_OF_MONTH = LocalDate.now().lengthOfMonth();
 
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
@@ -44,7 +43,6 @@ public final class Controller {
         for (DateObserver date : dateObservers) {
             date.updateDate();
         }
-
     }
 
     public void notifyChangeView(int days) {
@@ -57,23 +55,11 @@ public final class Controller {
         return localDate;
     }
 
-    //TODO
-    //I'm not sure if this is a good practice
-    public int getLENGTH_OF_WEEK() {
-        return LENGTH_OF_WEEK;
-    }
-
-    //TODO
-    //I'm not sure if this is a good practice
-    public int getLENGTH_OF_MONTH() {
-        return LENGTH_OF_MONTH;
-    }
-
     public void setActualView(String choiceOfView) {
         if (WEEK.name().equals(choiceOfView)) {
             notifyChangeView(LENGTH_OF_WEEK);
         } else if (MONTH.name().equals(choiceOfView)) {
-            notifyChangeView(LENGTH_OF_MONTH);
+            notifyChangeView(localDate.lengthOfMonth());
         }
     }
 
@@ -81,5 +67,4 @@ public final class Controller {
         this.localDate = localDate;
         notifyChangeDate();
     }
-
 }

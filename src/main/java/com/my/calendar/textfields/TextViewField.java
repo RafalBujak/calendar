@@ -1,6 +1,7 @@
 package com.my.calendar.textfields;
 
 import com.my.calendar.DateObserver;
+import com.my.calendar.ViewObserver;
 import com.my.calendar.controller.Controller;
 import com.my.calendar.date.DateFormatter;
 
@@ -9,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
 
-public class TextViewField extends JTextField implements DateObserver, MouseListener {
+public class TextViewField extends JTextField implements ViewObserver, DateObserver, MouseListener {
 
     private Controller controller = Controller.getInstance();
     private DateFormatter formatter = new DateFormatter();
@@ -17,14 +18,11 @@ public class TextViewField extends JTextField implements DateObserver, MouseList
         super(localDate.toString());
         addMouseListener(this);
         controller.addChangeDateObservers(this);
+        controller.addViewObservers(this);
     }
 
     @Override
     public void updateDate() {
-        inputNewDate();
-    }
-
-    private void inputNewDate() {
         setText(controller.getLocalDate().toString());
     }
 
@@ -32,7 +30,6 @@ public class TextViewField extends JTextField implements DateObserver, MouseList
     public void mouseClicked(MouseEvent event) {
         if (event.getSource() == this) {
             formatter.setLocalDateFromInputDialog();
-            //controller.notifyChangeView();
         }
     }
 
@@ -53,6 +50,11 @@ public class TextViewField extends JTextField implements DateObserver, MouseList
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void updateView(int days) {
 
     }
 }
