@@ -10,11 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.time.LocalDate;
 
-public class TextViewField extends JTextField implements ViewObserver, DateObserver, MouseListener {
+public class TextView extends JTextField implements ViewObserver, DateObserver, MouseListener {
 
     private Controller controller = Controller.getInstance();
     private DateFormatter formatter = new DateFormatter();
-    public TextViewField(LocalDate localDate) {
+    public TextView(LocalDate localDate) {
         super(localDate.toString());
         addMouseListener(this);
         controller.addChangeDateObservers(this);
@@ -54,7 +54,7 @@ public class TextViewField extends JTextField implements ViewObserver, DateObser
     }
 
     @Override
-    public void updateView(int days) {
+    public void updateView() {
 
     }
 }

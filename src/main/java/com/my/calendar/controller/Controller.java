@@ -2,19 +2,19 @@ package com.my.calendar.controller;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
+import com.my.calendar.enumclasses.ChoiceOfView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.my.calendar.enumclasses.ChoiceOfView.MONTH;
-import static com.my.calendar.enumclasses.ChoiceOfView.WEEK;
 import static java.time.LocalDate.*;
 
 public final class Controller {
 
-    private final int LENGTH_OF_WEEK = 7;
+    private final int DAY_OF_WEEK = 7;
 
+    private ChoiceOfView currentView = ChoiceOfView.WEEK;
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
     private List<ViewObserver> viewObservers = new ArrayList<>();
@@ -45,9 +45,9 @@ public final class Controller {
         }
     }
 
-    public void notifyChangeView(int days) {
+    public void notifyChangeView() {
         for (ViewObserver view : viewObservers) {
-            view.updateView(days);
+            view.updateView();
         }
     }
 
@@ -55,12 +55,22 @@ public final class Controller {
         return localDate;
     }
 
-    public void setActualView(String choiceOfView) {
-        if (WEEK.name().equals(choiceOfView)) {
-            notifyChangeView(LENGTH_OF_WEEK);
-        } else if (MONTH.name().equals(choiceOfView)) {
-            notifyChangeView(localDate.lengthOfMonth());
+    public ChoiceOfView getCurrentView() {
+        return currentView;
+    }
+
+    public int setCurrentDaysView() {
+        if (currentView.name().equals("WEEK")) {
+            return DAY_OF_WEEK;
+        } else if (currentView.name().equals("MONTH")) {
+            return localDate.lengthOfMonth();
         }
+        return 0;
+    }
+
+    public void setActualView(ChoiceOfView choiceOfView) {
+        this.currentView = choiceOfView;
+        notifyChangeView();
     }
 
     public void setLocalDate(LocalDate localDate) {

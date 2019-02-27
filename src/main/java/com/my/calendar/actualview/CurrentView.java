@@ -1,8 +1,9 @@
-package com.my.calendar.frameview;
+package com.my.calendar.actualview;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
 import com.my.calendar.additionalfunctions.Notes;
+import com.my.calendar.buttons.DaysButton;
 import com.my.calendar.controller.Controller;
 import com.my.calendar.date.DateFormatter;
 
@@ -16,31 +17,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class DaysButtonsView extends JPanel implements DateObserver, ViewObserver {
+public class CurrentView extends JPanel implements DateObserver, ViewObserver {
 
     private final int LENGTH_OF_WEEK_BY_DAYS = 7;
+
     private Controller controller = Controller.getInstance();
     private Notes database = new Notes();
     private List<JButton> currentCalendarView = new ArrayList<>();
     private DateFormatter formatter = new DateFormatter();
 
-    public DaysButtonsView() {
+    public CurrentView() {
         Controller.getInstance().addChangeDateObservers(this);
         Controller.getInstance().addViewObservers(this);
     }
 
-    public void currentView(int days) {
+    public void currentViewDays(int days) {
         removeAll();
         currentCalendarView.clear();
+
         LocalDate temp = LocalDate.of(controller.getLocalDate().getYear(), controller.getLocalDate().getMonth(), 1);
+
         for (int day = 0; day < days; day++) {
             if (days == LENGTH_OF_WEEK_BY_DAYS) {
-                currentCalendarView.add(new JButton(controller.getLocalDate().with(DayOfWeek.MONDAY).plusDays(day).toString()));
-            } else if (days == controller.getLocalDate().lengthOfMonth()){
-                currentCalendarView.add(new JButton(temp.toString()));
+                currentCalendarView.add(new DaysButton(controller.getLocalDate().with(DayOfWeek.MONDAY).plusDays(day).toString()));
+            } else if (days == controller.getLocalDate().lengthOfMonth()) {
+                currentCalendarView.add(new DaysButton(temp.toString()));
                 temp = temp.plusDays(1L);
             }
         }
+
         currentCalendarView.forEach(this::add);
         currentDateOfBackground();
         addMouseClickListener();
@@ -63,7 +68,6 @@ public class DaysButtonsView extends JPanel implements DateObserver, ViewObserve
     }
 
     private void addMouseClickListener() {
-
         for (int i = 0; i < currentCalendarView.size(); i++) {
             int finalIterator = i;
             currentCalendarView.get(i).addMouseListener(new MouseListener() {
@@ -73,7 +77,7 @@ public class DaysButtonsView extends JPanel implements DateObserver, ViewObserve
                         String temp = "";
                         String notes = JOptionPane.showInputDialog("Add new note", temp);
                         database.addNote(currentCalendarView.get(finalIterator).getText(), notes);
-                        database.getNoteFromMap(currentCalendarView.get(finalIterator).getText());
+                        database.getNote(currentCalendarView.get(finalIterator).getText());
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
                         String temp = currentCalendarView.get(finalIterator).getText();
                         formatter.setLocalDateFromMouse(temp);
@@ -102,12 +106,12 @@ public class DaysButtonsView extends JPanel implements DateObserver, ViewObserve
     }
 
     @Override
-    public void updateView(int days) {
-        currentView(days);
+    public void updateView() {
+        currentViewDays(controller.setCurrentDaysView());
     }
 
     @Override
     public void updateDate() {
-        currentView(days);
+        currentViewDays(controller.setCurrentDaysView());
     }
 }

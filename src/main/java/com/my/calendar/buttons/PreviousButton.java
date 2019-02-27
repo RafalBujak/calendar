@@ -1,11 +1,14 @@
 package com.my.calendar.buttons;
 
+import com.my.calendar.controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PreviousButton extends JButton implements ActionListener {
 
+    private Controller controller = Controller.getInstance();
     public PreviousButton(String name) {
         super(name);
         addActionListener(this);
@@ -13,8 +16,6 @@ public class PreviousButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (event.getSource() == this) {
-
-        }
+        controller.getCurrentView().previousButtonFunctionality();
     }
 }

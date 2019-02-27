@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 
 public class NextButton extends JButton implements ActionListener {
 
+    private Controller controller = Controller.getInstance();
+
     public NextButton(String name) {
         super(name);
         addActionListener(this);
@@ -15,8 +17,6 @@ public class NextButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if (event.getSource() == this) {
-            Controller.getInstance().setLocalDate(Controller.getInstance().getLocalDate().plusWeeks(1));
-        }
+        controller.getCurrentView().nextButtonFunctionality();
     }
 }
