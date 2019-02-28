@@ -2,10 +2,10 @@ package com.my.calendar.actualview;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
-import com.my.calendar.additionalfunctions.Notes;
 import com.my.calendar.buttons.DaysButton;
 import com.my.calendar.controller.Controller;
 import com.my.calendar.date.DateFormatter;
+import com.my.calendar.notelist.JListNote;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class CurrentView extends JPanel implements DateObserver, ViewObserver {
+public class CurrentDaysView extends JPanel implements DateObserver, ViewObserver {
 
     private final int LENGTH_OF_WEEK_BY_DAYS = 7;
 
     private Controller controller = Controller.getInstance();
-    private Notes database = new Notes();
     private List<JButton> currentCalendarView = new ArrayList<>();
     private DateFormatter formatter = new DateFormatter();
 
-    public CurrentView() {
+    public CurrentDaysView() {
         Controller.getInstance().addChangeDateObservers(this);
         Controller.getInstance().addViewObservers(this);
     }
@@ -76,13 +75,13 @@ public class CurrentView extends JPanel implements DateObserver, ViewObserver {
                     if (SwingUtilities.isRightMouseButton(event)) {
                         String temp = "";
                         String notes = JOptionPane.showInputDialog("Add new note", temp);
-                        database.addNote(currentCalendarView.get(finalIterator).getText(), notes);
-                        database.getNote(currentCalendarView.get(finalIterator).getText());
+                        controller.getNotes().addNote(currentCalendarView.get(finalIterator).getText(), notes);
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
                         String temp = currentCalendarView.get(finalIterator).getText();
                         formatter.setLocalDateFromMouse(temp);
                         resetBackground();
                         currentDateOfBackground();
+                        new JListNote();
                     }
                 }
 

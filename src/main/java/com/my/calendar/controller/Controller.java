@@ -2,6 +2,7 @@ package com.my.calendar.controller;
 
 import com.my.calendar.DateObserver;
 import com.my.calendar.ViewObserver;
+import com.my.calendar.additionalfunctions.Notes;
 import com.my.calendar.enumclasses.ChoiceOfView;
 
 import java.time.LocalDate;
@@ -15,6 +16,8 @@ public final class Controller {
     private final int DAY_OF_WEEK = 7;
 
     private ChoiceOfView currentView = ChoiceOfView.WEEK;
+
+    private Notes note = new Notes();
     private LocalDate localDate = now();
     private List<DateObserver> dateObservers = new ArrayList<>();
     private List<ViewObserver> viewObservers = new ArrayList<>();
@@ -51,6 +54,9 @@ public final class Controller {
         }
     }
 
+    public Notes getNotes() {
+        return note;
+    }
     public LocalDate getLocalDate() {
         return localDate;
     }

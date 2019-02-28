@@ -17,10 +17,9 @@ public class MainFrameView extends JFrame {
 
         NavigationView navigationButtonView = new NavigationView();
         calendarFrame.getContentPane().add(navigationButtonView, BorderLayout.PAGE_START);
-        CurrentView buttonsView = new CurrentView();
+        CurrentDaysView buttonsView = new CurrentDaysView();
         buttonsView.currentViewDays(Controller.getInstance().setCurrentDaysView());
         calendarFrame.getContentPane().add(buttonsView, BorderLayout.CENTER);
-        calendarFrame.getContentPane().add(new JTextArea(), BorderLayout.AFTER_LAST_LINE);
         calendarFrame.setVisible(true);
     }
 }
