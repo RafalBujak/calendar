@@ -11,7 +11,7 @@ public class JListNote extends JFrame {
 
         String temp = Controller.getInstance().getLocalDate().toString();
 
-        notesList.addElement(Controller.getInstance().getNotes().getNote(temp));
+        notesList.addElement(Controller.getInstance().getNotes().getNotes(temp));
 
         JList<String> noteList = new JList<>(notesList);
         add(noteList);

@@ -26,8 +26,8 @@ public class CurrentDaysView extends JPanel implements DateObserver, ViewObserve
     private DateFormatter formatter = new DateFormatter();
 
     public CurrentDaysView() {
-        Controller.getInstance().addChangeDateObservers(this);
-        Controller.getInstance().addViewObservers(this);
+        controller.addChangeDateObservers(this);
+        controller.addViewObservers(this);
     }
 
     public void currentViewDays(int days) {
@@ -67,17 +67,17 @@ public class CurrentDaysView extends JPanel implements DateObserver, ViewObserve
     }
 
     private void addMouseClickListener() {
-        for (int i = 0; i < currentCalendarView.size(); i++) {
-            int finalIterator = i;
-            currentCalendarView.get(i).addMouseListener(new MouseListener() {
+        for (int day = 0; day < currentCalendarView.size(); day++) {
+            int innerClassIterator = day;
+            currentCalendarView.get(day).addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent event) {
                     if (SwingUtilities.isRightMouseButton(event)) {
                         String temp = "";
                         String notes = JOptionPane.showInputDialog("Add new note", temp);
-                        controller.getNotes().addNote(currentCalendarView.get(finalIterator).getText(), notes);
+                        controller.getNotes().addNote(currentCalendarView.get(innerClassIterator).getText(), notes);
                     } else if (SwingUtilities.isLeftMouseButton(event)) {
-                        String temp = currentCalendarView.get(finalIterator).getText();
+                        String temp = currentCalendarView.get(innerClassIterator).getText();
                         formatter.setLocalDateFromMouse(temp);
                         resetBackground();
                         currentDateOfBackground();

@@ -32,7 +32,6 @@ public enum ChoiceOfView {
     };
 
     public void previousButtonFunctionality() {
-
         if (Controller.getInstance().getCurrentView().name().equals("WEEK")) {
             LocalDate localDate = Controller.getInstance().getLocalDate().minusWeeks(1);
             Controller.getInstance().setLocalDate(localDate);

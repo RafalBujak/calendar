@@ -16,11 +16,10 @@ public class Notes implements SimpleNoteService {
     public void addNote(String key, String value) {
         ArrayList<String> values = storeOfNotes.computeIfAbsent(key, k -> new ArrayList<>());
         values.add(value);
-        System.out.println(storeOfNotes.size());
     }
 
     @Override
-    public String getNote(String key) {
+    public String getNotes(String key) {
         List<String> noteList;
         noteList = storeOfNotes.getOrDefault(key, new ArrayList<>());
         return noteList.toString();
