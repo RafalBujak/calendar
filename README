@@ -1,0 +1,3 @@
+Project Calendar
+Inside the project I use two design patterns: Singleton and Observer, and java.swing, also standard POJO without any Frameworks
+Calendar can work in two view (week and month), also is posiibly to add note to specific day. 
